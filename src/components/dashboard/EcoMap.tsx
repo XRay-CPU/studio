@@ -51,7 +51,7 @@ export function EcoMap() {
                 <p className="text-sm text-muted-foreground">{quest.location}</p>
                 <p className="text-sm">{quest.description.substring(0, 100)}...</p>
                 <Button asChild className="w-full">
-                  <Link href="/dashboard/quests">View Details</Link>
+                  <Link href={`/dashboard/quests/${quest.id}`}>View Details</Link>
                 </Button>
               </div>
             </PopoverContent>

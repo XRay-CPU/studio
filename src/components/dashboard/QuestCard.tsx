@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Coins, MapPin, Zap } from 'lucide-react';
+import Link from 'next/link';
 
 type QuestCardProps = {
   quest: Quest;
@@ -42,7 +43,9 @@ export function QuestCard({ quest }: QuestCardProps) {
                 <span className="font-semibold">{quest.difficulty}</span>
             </div>
         </div>
-        <Button className="w-full font-bold">View Quest</Button>
+        <Button asChild className="w-full font-bold">
+          <Link href={`/dashboard/quests/${quest.id}`}>View Quest</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

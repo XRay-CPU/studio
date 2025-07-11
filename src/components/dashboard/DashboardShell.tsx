@@ -85,7 +85,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter className="group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:items-center">
-           <div className="group-data-[collapsible=icon]:hidden w-full">
+           <div className="group-data-[collapsible=icon]:hidden w-full flex items-center justify-between gap-2 p-2">
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="justify-start w-full p-2">
@@ -112,9 +112,10 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                     </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
+                <ThemeToggle />
            </div>
            
-           <div className="hidden group-data-[collapsible=icon]:block">
+           <div className="hidden group-data-[collapsible=icon]:flex flex-col gap-2 items-center p-2">
              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Avatar className="h-8 w-8 cursor-pointer">
@@ -135,6 +136,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
+            <ThemeToggle />
            </div>
 
         </SidebarFooter>
@@ -153,7 +155,6 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                 <Coins className="h-5 w-5 text-yellow-500" />
                 <span className="font-bold">1,250 $CARE</span>
             </div>
-            <ThemeToggle />
             <SidebarTrigger className="md:hidden" />
           </div>
         </header>

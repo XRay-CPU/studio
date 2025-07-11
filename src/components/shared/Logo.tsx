@@ -14,22 +14,35 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       {...props}
       className={cn(props.className)}
     >
-      <path
-        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Z"
+      {/* Shield Outline */}
+      <path 
+        d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" 
         stroke="hsl(var(--primary))"
         fill="hsl(var(--primary))"
         opacity="0.1"
       />
-      <path
-        d="M12,22C17.5228,22 22,17.5228 22,12C22,6.47715 17.5228,2 12,2C6.47715,2 2,6.47715 2,12C2,17.5228 6.47715,22 12,22Z"
+      <path 
+        d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" 
         stroke="hsl(var(--primary))"
         strokeWidth="1.5"
+        fill="none"
       />
-      {/* Leaf Vein / Circuit */}
-      <path d="M12 20V8" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-      <path d="M10 12h4" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-      <path d="M10 15h4" stroke="hsl(var(--primary))" strokeWidth="1.5" />
-      <path d="M9 18h6" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+
+      {/* Leaf and Tech Lines */}
+      <path 
+        d="M12 17a5 5 0 0 0 5-5 5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5z" 
+        stroke="hsl(var(--primary))" 
+        opacity="0.6"
+      />
+      <path 
+        d="M12 17v-1"
+        stroke="hsl(var(--primary))"
+      />
+      <path 
+        d="M12 9v-2m-2.5 5h-2m4.5 2.5l-1.5 1.5m5-5.5l1.5-1.5"
+        stroke="hsl(var(--primary))"
+        opacity="0.8"
+      />
     </svg>
   );
 }

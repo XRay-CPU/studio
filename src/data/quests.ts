@@ -10,7 +10,7 @@ export const questData: Quest[] = [
     difficulty: 'Medium',
     impactRating: 5,
     partner: 'Alaminos City Tourism',
-    image: 'https://storage.googleapis.com/project-spark-341216.appspot.com/users%2FwY2D34xO4AWwzC0dGjB8i2A5MGr2%2Fuploads%2F1722302390885-2.jpeg?GoogleAccessId=firebase-adminsdk-p1p1e%40project-spark-341216.iam.gserviceaccount.com&Expires=1722305996&Signature=F8f%2Bd7N%2Bt7XjTj4L6pE8k8o4z4zB%2FF%2B9B0A3Jk9A3Wz2O5j5g5i8V6u1g5t7j9H9o8p6u5v4w3q2y1x0c9b8a7d6e5f4g3h2i1j0k9l8m7n6o5p4q3r2s1t0u9v8w7x6y5z4a3b2c1d0e9f8g7h6i5j4k3l2m1n0o9p8q7r6s5t4u3v2w1x0y9z8a7b6c5d4e3f2g1h0i9j8k7l6m5n4o3p2q1r0s9t8u7v6w5x4y3z2a1b0c9d8e7f6g5h4i3j2k1l0m9n8o7p6q5r4s3t2u1v0w9x8y7z6a5b4c3d2e1f0%3D',
+    image: 'https://placehold.co/600x400.png',
     dataAiHint: 'hundred islands philippines',
     tokens: 150,
     todos: [

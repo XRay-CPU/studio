@@ -7,10 +7,10 @@ import {
   SidebarContent,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarMenuButton,
   SidebarFooter,
   SidebarTrigger,
   SidebarInset,
+  SidebarRail,
 } from "@/components/ui/sidebar";
 import {
   Avatar,
@@ -48,7 +48,6 @@ const menuItems = [
   { href: "/dashboard/map", label: "Eco-Map", icon: Map },
   { href: "/dashboard/rewards", label: "Rewards", icon: Award, disabled: true },
   { href: "/dashboard/verify", label: "Verify", icon: ShieldCheck },
-  { href: "/dashboard/profile", label: "Profile", icon: UserIcon },
 ];
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
@@ -60,63 +59,102 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <Logo className="w-8 h-8" />
-            <span className="font-headline text-lg font-semibold text-sidebar-foreground">
+            <span className="font-headline text-lg font-semibold text-sidebar-foreground group-data-[collapsible=icon]:hidden">
               Likas Bayani
             </span>
           </div>
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-            {menuItems.map((item) => (
-              <SidebarMenuItem key={item.href}>
-                <Button asChild variant="ghost" className="w-full justify-start" disabled={item.disabled}>
-                  <Link href={item.href}>
+             {menuItems.map((item) => (
+              <SidebarMenuItem key={item.href} asChild>
+                 <Button
+                  asChild
+                  variant="ghost"
+                  className="w-full justify-start"
+                  disabled={item.disabled}
+                  data-active={pathname === item.href}
+                >
+                  <Link href={item.href} title={item.label}>
                     <item.icon className="mr-2 h-4 w-4" />
-                    {item.label}
+                     <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
                   </Link>
                 </Button>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
         </SidebarContent>
-        <SidebarFooter>
-           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="justify-start w-full">
-                <Avatar className="h-8 w-8 mr-2">
-                  <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="user avatar" />
-                  <AvatarFallback>JD</AvatarFallback>
-                </Avatar>
-                <div className="text-left">
-                    <p className="text-sm font-medium">Juan dela Cruz</p>
-                    <p className="text-xs text-muted-foreground">Mangrove Defender</p>
-                </div>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent side="right" align="start" className="w-56">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <SidebarFooter className="group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:items-center">
+           <div className="group-data-[collapsible=icon]:hidden w-full">
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="justify-start w-full p-2">
+                        <Avatar className="h-8 w-8 mr-2">
+                        <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="user avatar" />
+                        <AvatarFallback>JD</AvatarFallback>
+                        </Avatar>
+                        <div className="text-left">
+                            <p className="text-sm font-medium">Juan dela Cruz</p>
+                            <p className="text-xs text-muted-foreground">Mangrove Defender</p>
+                        </div>
+                    </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent side="right" align="start" className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>
+                    </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+           </div>
+           
+           <div className="hidden group-data-[collapsible=icon]:block">
+             <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Avatar className="h-8 w-8 cursor-pointer">
+                        <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="user avatar" />
+                        <AvatarFallback>JD</AvatarFallback>
+                    </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent side="right" align="start" className="w-56">
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+           </div>
+
         </SidebarFooter>
+        <SidebarRail />
       </Sidebar>
       <SidebarInset>
         <header className="flex items-center justify-between p-4 border-b">
-          <SidebarTrigger className="md:hidden" />
+          <div className="flex items-center gap-2">
+            <SidebarTrigger className="hidden md:flex" />
+            <h1 className="text-lg font-semibold md:text-xl">
+                {menuItems.find(item => item.href === pathname)?.label || 'Dashboard'}
+            </h1>
+          </div>
           <div className="flex items-center gap-4 ml-auto">
             <div className="flex items-center gap-2">
                 <Coins className="h-5 w-5 text-yellow-500" />
                 <span className="font-bold">1,250 $CARE</span>
             </div>
             <ThemeToggle />
+            <SidebarTrigger className="md:hidden" />
           </div>
         </header>
         <main className="flex-1 p-4 sm:p-6 lg:p-8 bg-background/95">

@@ -16,10 +16,10 @@ const questCompletionData = [
 ];
 
 const categoryData = [
-  { name: 'Marine', value: 400 },
+  { name: 'Marine Protection', value: 400 },
   { name: 'Reforestation', value: 300 },
-  { name: 'Waste Mgmt', value: 200 },
-  { name: 'Urban Green', value: 278 },
+  { name: 'Waste Management', value: 200 },
+  { name: 'Urban Greening', value: 278 },
 ];
 
 
@@ -68,7 +68,7 @@ export default function AnalyticsPage() {
               <BarChart data={categoryData} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" />
-                <YAxis dataKey="name" type="category" width={80} />
+                <YAxis dataKey="name" type="category" width={120} />
                 <Tooltip />
                 <Bar dataKey="value" fill="hsl(var(--primary))" name="Total Quests" />
               </BarChart>

@@ -19,9 +19,12 @@ import {
   Star,
   ArrowLeft,
   Calendar,
+  CheckSquare,
 } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 export default function QuestDetailPage({ params }: { params: { id: string } }) {
   const quest = questData.find((q) => q.id === params.id);
@@ -68,6 +71,26 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
               <p className="text-muted-foreground">{quest.description}</p>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="font-headline flex items-center gap-2">
+                <CheckSquare className="h-6 w-6" />
+                Your To-Do List
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {quest.todos.map((todo, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <Checkbox id={`todo-${index}`} />
+                  <Label htmlFor={`todo-${index}`} className="text-base">
+                    {todo}
+                  </Label>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
         </div>
 
         <div className="lg:col-span-1 space-y-6">

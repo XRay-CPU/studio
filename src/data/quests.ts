@@ -13,6 +13,12 @@ export const questData: Quest[] = [
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'mangrove forest',
     tokens: 150,
+    todos: [
+        'Attend briefing on mangrove planting techniques.',
+        'Collect mangrove saplings from the nursery.',
+        'Plant saplings in the designated coastal area.',
+        'Document the number of saplings planted.',
+    ]
   },
   {
     id: 'palawan-coral',
@@ -26,6 +32,12 @@ export const questData: Quest[] = [
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'coral reef',
     tokens: 250,
+    todos: [
+        'Attend pre-dive briefing on survey methods.',
+        'Perform buddy check and gear setup.',
+        'Follow the transect line and record coral data.',
+        'Submit data and photos to the lead biologist.',
+    ]
   },
   {
     id: 'bohol-beach-cleanup',
@@ -39,6 +51,12 @@ export const questData: Quest[] = [
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'beach cleanup',
     tokens: 75,
+    todos: [
+        'Receive your cleanup kit (gloves and bags).',
+        'Collect and segregate waste along the shoreline.',
+        'Weigh the collected waste.',
+        'Participate in the post-cleanup brand audit.',
+    ]
   },
   {
     id: 'manila-rooftop-garden',
@@ -52,6 +70,12 @@ export const questData: Quest[] = [
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'rooftop garden',
     tokens: 100,
+    todos: [
+        'Help prepare the garden beds and soil.',
+        'Plant vegetable seedlings as instructed.',
+        'Install the drip irrigation system.',
+        'Label the planted sections.',
+    ]
   },
   {
     id: 'cebu-watershed-tree-planting',
@@ -65,6 +89,12 @@ export const questData: Quest[] = [
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'mountain forest',
     tokens: 120,
+    todos: [
+        'Hike to the designated planting site.',
+        'Dig holes according to specifications.',
+        'Plant native tree saplings.',
+        'Record GPS coordinates of your planted trees.',
+    ]
   },
   {
     id: 'la-union-surf-cleanup',
@@ -78,5 +108,11 @@ export const questData: Quest[] = [
     image: 'https://placehold.co/600x400.png',
     dataAiHint: 'surfing beach',
     tokens: 80,
+    todos: [
+        'Join the morning briefing at the assembly point.',
+        'Focus on collecting microplastics near the high-tide line.',
+        'Segregate collected items into recyclables and non-recyclables.',
+        'Help transport filled bags to the collection point.',
+    ]
   },
 ];

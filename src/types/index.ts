@@ -10,4 +10,5 @@ export type Quest = {
   image: string;
   tokens: number;
   dataAiHint: string;
+  todos: string[];
 };

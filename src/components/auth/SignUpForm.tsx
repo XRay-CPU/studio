@@ -69,7 +69,7 @@ export function SignUpForm() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="interests">Primary Interest</Label>
-            <Select required>
+            <Select>
               <SelectTrigger id="interests" className="w-full">
                 <Leaf className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <div className="pl-5">

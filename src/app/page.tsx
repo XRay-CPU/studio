@@ -63,9 +63,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="py-12 md:py-24 bg-background/30 backdrop-blur-sm">
+        <section id="features" className="py-12 md:py-24 relative">
           <div className="container mx-auto px-4">
-            <div className="text-center space-y-4 mb-12">
+            <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl md:text-4xl font-headline font-bold">
                 A New Paradigm for Ecotourism
               </h2>
@@ -77,24 +77,21 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
-                <Card
-                  key={index}
-                  className="text-center shadow-lg hover:shadow-primary/20 transition-shadow bg-card/60 backdrop-blur-lg border-border/20"
-                >
-                  <CardHeader>
-                    <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">
+                <div key={index} className="flex flex-col items-center text-center group">
+                  <div
+                    className="hexagon bg-card/60 backdrop-blur-sm border-2 border-primary/20 w-64 h-72 flex flex-col justify-center items-center p-8 transition-all duration-300 hover:border-primary/50 hover:scale-105"
+                  >
+                    <div className="mb-4 text-primary transition-transform duration-300 group-hover:scale-110">
                       {feature.icon}
                     </div>
-                  </CardHeader>
-                  <CardContent className="space-y-2">
-                    <h3 className="text-xl font-bold font-headline">
+                    <h3 className="text-xl font-bold font-headline mb-2">
                       {feature.title}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       {feature.description}
                     </p>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

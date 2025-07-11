@@ -39,8 +39,8 @@ import {
   ShieldCheck,
   Spade,
   User as UserIcon,
-  Switch,
 } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 import { Logo } from "@/components/shared/Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -87,7 +87,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                   asChild
                   variant="ghost"
                   className="w-full justify-start"
-                  disabled={item.disabled}
+                  
                   data-active={pathname === item.href}
                 >
                   <Link href={item.href} title={item.label}>

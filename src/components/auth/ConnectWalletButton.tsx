@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Loader2 } from "lucide-react";
+import { Loader2, UserPlus } from "lucide-react";
 
 // Extend the Window interface to include ethereum
 declare global {
@@ -61,7 +61,10 @@ export function ConnectWalletButton() {
           Connecting...
         </>
       ) : (
-        "Connect with MetaMask"
+        <>
+          <UserPlus className="mr-2 h-4 w-4" />
+          Connect with MetaMask
+        </>
       )}
     </Button>
   );

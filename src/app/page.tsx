@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ConnectWalletButton } from '@/components/auth/ConnectWalletButton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Map, Target, Award, UserPlus } from 'lucide-react';
+import { CheckCircle, Map, Target, Award, UserPlus, ArrowRight } from 'lucide-react';
 
 const features = [
   {
@@ -36,41 +36,34 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
-        <section className="relative w-full h-[80vh] flex items-center justify-center overflow-hidden">
-          <div
-            className="absolute inset-0 z-0 h-full w-full bg-background"
-            style={{
-              backgroundImage:
-                'linear-gradient(180deg, hsl(var(--background)) 0%, transparent 30%), radial-gradient(at 50% 100%, hsl(var(--primary) / 0.1), transparent 70%), linear-gradient(35deg, hsl(var(--primary)/0.15) 0%, transparent 25%), linear-gradient(-35deg, hsl(var(--accent)/0.15) 0%, transparent 25%)',
-              backgroundSize: 'cover',
-              backgroundRepeat: 'no-repeat',
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10" />
-
-          <div className="relative z-20 text-center space-y-6 max-w-4xl mx-auto px-4">
-            <Logo className="h-20 w-20 mx-auto" />
-            <h1 className="text-4xl md:text-6xl font-headline font-bold text-foreground">
-              Play. Preserve. Prosper.
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Likas Bayani transforms ecotourism into a gamified experience
-              where your actions heal the planet and reward you with verifiable,
-              on-chain credentials.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <ConnectWalletButton />
-              <Button variant="secondary" size="lg" asChild>
-                <Link href="/auth">
-                  <UserPlus className="mr-2 h-4 w-4" />
-                  Create an Account
-                </Link>
-              </Button>
-            </div>
+        <section className="relative w-full min-h-screen flex items-center justify-center p-4">
+          <div className="relative z-10 w-full max-w-4xl">
+            <Card className="bg-card/60 backdrop-blur-lg border-white/10 shadow-2xl">
+              <CardContent className="p-8 md:p-12 text-center space-y-6">
+                <Logo className="h-20 w-20 mx-auto" />
+                <h1 className="text-4xl md:text-6xl font-headline font-bold text-foreground">
+                  Play. Preserve. Prosper.
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Likas Bayani transforms ecotourism into a gamified experience
+                  where your actions heal the planet and reward you with verifiable,
+                  on-chain credentials.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <ConnectWalletButton />
+                  <Button variant="secondary" size="lg" asChild>
+                    <Link href="/auth">
+                      Create an Account
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
-        <section id="features" className="py-12 md:py-24 bg-background">
+        <section id="features" className="py-12 md:py-24 bg-background/80 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-3xl md:text-4xl font-headline font-bold">
@@ -86,7 +79,7 @@ export default function Home() {
               {features.map((feature, index) => (
                 <Card
                   key={index}
-                  className="text-center shadow-lg hover:shadow-primary/20 transition-shadow"
+                  className="text-center shadow-lg hover:shadow-primary/20 transition-shadow bg-card/60 backdrop-blur-lg border-white/10"
                 >
                   <CardHeader>
                     <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">

@@ -21,9 +21,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <div className="fixed inset-0 -z-10 h-full w-full bg-pattern">
-          <div className="absolute inset-0 bg-glow"></div>
-        </div>
+        <div className="fixed inset-0 -z-10 h-full w-full bg-pattern"></div>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

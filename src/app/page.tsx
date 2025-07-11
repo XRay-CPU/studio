@@ -63,7 +63,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="relative -z-10 py-12 md:py-24 bg-background/30 backdrop-blur-sm">
+        <section id="features" className="py-12 md:py-24 bg-background/30 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-3xl md:text-4xl font-headline font-bold">

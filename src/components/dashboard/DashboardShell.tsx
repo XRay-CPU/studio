@@ -46,7 +46,7 @@ const menuItems = [
   { href: "/dashboard/quests", label: "Quests", icon: Spade },
   { href: "/dashboard/map", label: "Eco-Map", icon: Map },
   { href: "/dashboard/rewards", label: "Rewards", icon: Award, disabled: true },
-  { href: "/dashboard/verify", label: "Verify", icon: ShieldCheck, disabled: true },
+  { href: "/dashboard/verify", label: "Verify", icon: ShieldCheck },
   { href: "/dashboard/profile", label: "Profile", icon: UserIcon },
 ];
 

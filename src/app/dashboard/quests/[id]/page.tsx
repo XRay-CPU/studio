@@ -21,6 +21,7 @@ import {
   Calendar,
   CheckSquare,
   Image as ImageIcon,
+  Camera
 } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
@@ -129,7 +130,12 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
                         <span className="text-xl font-bold">{quest.tokens} Moral</span>
                     </div>
                 </div>
-              <Button size="lg" className="w-full font-bold">Accept Quest</Button>
+              <Button asChild size="lg" className="w-full font-bold">
+                 <Link href={`/dashboard/quests/${quest.id}/submit`}>
+                  <Camera className="mr-2 h-5 w-5" />
+                  Submit Proof of Action
+                </Link>
+              </Button>
               <Button asChild size="lg" variant="secondary" className="w-full font-bold">
                 <Link href={`/dashboard/quests/${quest.id}/generate-image`}>
                   <ImageIcon className="mr-2 h-5 w-5" />

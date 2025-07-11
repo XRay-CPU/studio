@@ -10,7 +10,7 @@ export const questData: Quest[] = [
     difficulty: 'Medium',
     impactRating: 5,
     partner: 'Alaminos City Tourism',
-    image: 'https://placehold.co/600x400.png',
+    image: '/images/the-user-wants-to-place-this-image-in-the-hundred-islands-img-placeholder.png',
     dataAiHint: 'hundred islands philippines',
     tokens: 150,
     todos: [
@@ -112,7 +112,7 @@ export const questData: Quest[] = [
         'Learn to prepare the glutinous rice and coconut mixture.',
         'Practice wrapping the mixture in banana leaves.',
         'Help cook the Tupig over charcoal.',
-        'Learn about sustainable use of local ingredients.',
+        'Learn about the sustainable use of local ingredients.',
     ]
   },
 ];

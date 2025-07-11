@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ConnectWalletButton } from '@/components/auth/ConnectWalletButton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, Map, Target, Award } from 'lucide-react';
+import { CheckCircle, Map, Target, Award, UserPlus } from 'lucide-react';
 
 const features = [
   {
@@ -56,7 +56,10 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                     <ConnectWalletButton />
                     <Button variant="secondary" size="lg" asChild>
-                        <Link href="#features">Learn More</Link>
+                        <Link href="/auth">
+                            <UserPlus className="mr-2 h-4 w-4" />
+                            Create an Account
+                        </Link>
                     </Button>
                 </div>
             </div>

@@ -10,7 +10,7 @@ export const questData: Quest[] = [
     difficulty: 'Medium',
     impactRating: 5,
     partner: 'Alaminos City Tourism',
-    image: '/images/the-user-wants-to-place-this-image-in-the-hundred-islands-img-placeholder.png',
+    image: 'https://placehold.co/600x400.png',
     dataAiHint: 'hundred islands philippines',
     tokens: 150,
     todos: [

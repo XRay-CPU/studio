@@ -4,19 +4,19 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 142.1 76.2% 36.3%;
+    --background: 210 40% 98%; /* Light Sky Blue */
+    --foreground: 224 71% 4%; /* Dark Slate Blue */
+    --card: 210 40% 98%;
+    --card-foreground: 224 71% 4%;
+    --popover: 210 40% 98%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 142.1 76.2% 36.3%; /* Forest Green */
     --primary-foreground: 355.7 100% 97.3%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 215.4 16.3% 46.9%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 38 92% 50%;
+    --accent: 38 92% 50%; /* Earthy Yellow/Orange */
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -40,19 +40,19 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 222.2 84% 4.9%; /* Deep Blue Night Sky */
+    --foreground: 210 40% 98%; /* Light Gray */
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 142.1 76.2% 36.3%;
+    --primary: 142.1 76.2% 36.3%; /* Vibrant Green */
     --primary-foreground: 355.7 100% 97.3%;
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 38 92% 50%;
+    --muted: 217.2 32.6% 17.5%; /* Dark Slate */
+    --muted-foreground: 215.4 16.3% 56.9%; /* Lighter muted text */
+    --accent: 38 92% 50%; /* Earthy Yellow/Orange */
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
@@ -81,5 +81,8 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: hsl(222.2 84% 4.9%);
+    background-image:
+      radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120,119,198,0.3), hsla(0,0%,100%,0));
   }
 }

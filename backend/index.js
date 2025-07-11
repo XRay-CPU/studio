@@ -3,9 +3,10 @@
 
 const express = require('express');
 const { ethers } = require('ethers');
+console.log('Loaded environment variables:', process.env);
 const db = require('./db');
 const cors = require('cors');
-require('dotenv').config();
+require('dotenv').config({ path: __dirname + '/.env' });
 
 const app = express();
 app.use(cors());
@@ -24,6 +25,11 @@ const contractABI = [
 ];
 const contractAddress = process.env.CONTRACT_ADDRESS;
 
+if (!process.env.PRIVATE_KEY) {
+  console.error('PRIVATE_KEY is undefined!');
+  process.exit(1);
+}
+console.log('PRIVATE_KEY:', process.env.PRIVATE_KEY, 'Length:', process.env.PRIVATE_KEY.length);
 const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 const contract = new ethers.Contract(contractAddress, contractABI, wallet);
 
@@ -94,7 +100,13 @@ app.get('/transfers', (req, res) => {
   });
 });
 
+// Health check endpoint
+app.get('/api/ping', (req, res) => {
+  res.json({ status: 'ok', message: 'Backend is connected!' });
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Express server running on port ${PORT}`);
 });
+

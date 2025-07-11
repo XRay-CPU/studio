@@ -12,12 +12,11 @@ import Link from 'next/link';
 
 // Approximate coordinates for map pins on a placeholder image
 const pinPositions = {
-  'Siargao, Surigao del Norte': { top: '55%', left: '85%' },
-  'El Nido, Palawan': { top: '52%', left: '18%' },
-  'Panglao, Bohol': { top: '58%', left: '70%' },
-  'Makati, Metro Manila': { top: '35%', left: '42%' },
-  'Cebu City, Cebu': { top: '52%', left: '68%' },
-  'San Juan, La Union': { top: '25%', left: '38%' },
+  'Alaminos, Pangasinan': { top: '35%', left: '40%' },
+  'Bolinao, Pangasinan': { top: '25%', left: '25%' },
+  'Dasol, Pangasinan': { top: '45%', left: '30%' },
+  'San Fabian, Pangasinan': { top: '38%', left: '65%' },
+  'Villasis, Pangasinan': { top: '60%', left: '75%' },
 };
 
 export function EcoMap() {
@@ -25,10 +24,10 @@ export function EcoMap() {
     <div className="relative w-full h-full rounded-lg overflow-hidden border shadow-lg">
       <Image
         src="https://placehold.co/1200x800.png"
-        alt="Map of the Philippines"
+        alt="Map of Pangasinan"
         layout="fill"
         objectFit="cover"
-        data-ai-hint="philippines map"
+        data-ai-hint="pangasinan map"
       />
       <div className="absolute inset-0 bg-black/20" />
 

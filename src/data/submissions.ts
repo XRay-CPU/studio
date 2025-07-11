@@ -18,38 +18,38 @@ export type Submission = {
 export const submissionData: Submission[] = [
   {
     id: 'sub-001',
-    questId: 'siargao-mangrove',
-    questTitle: 'Siargao Mangrove Reforestation',
-    questCategory: 'Reforestation',
+    questId: 'hundred-islands-cleanup',
+    questTitle: 'Hundred Islands Marine Debris Cleanup',
+    questCategory: 'Marine Protection',
     userName: 'Maria Clara',
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-20',
     status: 'Pending',
     evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'We planted over 50 saplings today! The community was very supportive.'
+    userNotes: 'We collected so much plastic from Quezon Island. The boatmen were a great help!'
   },
   {
     id: 'sub-002',
-    questId: 'bohol-beach-cleanup',
-    questTitle: 'Bohol Beach Cleanup Drive',
+    questId: 'patar-beach-coastal-cleanup',
+    questTitle: 'Patar Beach Coastal Cleanup',
     questCategory: 'Waste Management',
     userName: 'Andres Bonifacio',
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-19',
     status: 'Pending',
     evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'Collected 3 large bags of plastic waste. Most of it was single-use plastic bottles.'
+    userNotes: 'Collected 3 large bags of plastic waste. Most of it was single-use plastic bottles and food wrappers.'
   },
   {
     id: 'sub-003',
-    questId: 'manila-rooftop-garden',
-    questTitle: 'Manila Urban Rooftop Garden',
-    questCategory: 'Urban Greening',
+    questId: 'bolinao-giant-clam',
+    questTitle: 'Bolinao Giant Clam Seeding',
+    questCategory: 'Marine Protection',
     userName: 'Gabriela Silang',
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-18',
     status: 'Pending',
     evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'The irrigation system is now set up. Planted tomatoes and lettuce seedlings.'
+    userNotes: 'The team at UP MSI was so knowledgeable. It was amazing to see the giant clams up close.'
   }
 ];

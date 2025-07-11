@@ -38,7 +38,7 @@ export default function Home() {
       <main className="flex-1">
         <section className="relative w-full min-h-screen flex items-center justify-center p-4">
           <div className="relative z-10 w-full max-w-4xl">
-            <Card className="bg-card/60 backdrop-blur-lg border-white/10 shadow-2xl">
+            <Card className="bg-card/60 backdrop-blur-lg border-border/20 shadow-2xl">
               <CardContent className="p-8 md:p-12 text-center space-y-6">
                 <Logo className="h-20 w-20 mx-auto" />
                 <h1 className="text-4xl md:text-6xl font-headline font-bold text-foreground">
@@ -63,7 +63,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="py-12 md:py-24 bg-background/80 backdrop-blur-sm">
+        <section id="features" className="py-12 md:py-24 bg-background/30 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-3xl md:text-4xl font-headline font-bold">
@@ -79,7 +79,7 @@ export default function Home() {
               {features.map((feature, index) => (
                 <Card
                   key={index}
-                  className="text-center shadow-lg hover:shadow-primary/20 transition-shadow bg-card/60 backdrop-blur-lg border-white/10"
+                  className="text-center shadow-lg hover:shadow-primary/20 transition-shadow bg-card/60 backdrop-blur-lg border-border/20"
                 >
                   <CardHeader>
                     <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit">

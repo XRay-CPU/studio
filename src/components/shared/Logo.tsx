@@ -14,20 +14,11 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       {...props}
       className={cn(props.className)}
     >
-      {/* Central block - the root/foundation */}
-      <rect x="10" y="15" width="4" height="4" rx="1" stroke="hsl(var(--primary))" />
-
-      {/* Left leaf block */}
-      <path d="M10 15l-5-3.5" stroke="hsl(var(--primary))" />
-      <rect x="3" y="10.5" width="4" height="4" rx="1" transform="rotate(-35 5 12.5)" stroke="hsl(var(--primary))" />
-
-      {/* Right leaf block */}
-      <path d="M14 15l5-3.5" stroke="hsl(var(--primary))" />
-      <rect x="17" y="10.5" width="4" height="4" rx="1" transform="rotate(35 19 12.5)" stroke="hsl(var(--primary))" />
-
-      {/* Top leaf block */}
-      <path d="M12 15V9" stroke="hsl(var(--primary))" />
-      <rect x="10" y="5" width="4" height="4" rx="1" stroke="hsl(var(--primary))" fill="hsl(var(--primary))" />
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="hsl(var(--primary))" />
+      <path d="M12 12c-2-2.5-2.5-6-1-7.5" stroke="hsl(var(--primary))" />
+      <path d="M12 12c2-2.5 2.5-6 1-7.5" stroke="hsl(var(--primary))" />
+      <path d="M12 12v6" stroke="hsl(var(--primary))" />
+      <path d="M10 14h4" stroke="hsl(var(--primary))" />
     </svg>
   );
 }

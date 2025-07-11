@@ -82,4 +82,10 @@
   body {
     @apply bg-transparent text-foreground;
   }
+  .bg-pattern {
+    @apply bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem];
+  }
+  .bg-glow {
+    @apply bg-[radial-gradient(circle_500px_at_50%_200px,#C9E265,transparent)];
+  }
 }

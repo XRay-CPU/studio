@@ -81,8 +81,5 @@
   }
   body {
     @apply bg-background text-foreground;
-    background-color: hsl(222.2 84% 4.9%);
-    background-image:
-      radial-gradient(ellipse 80% 80% at 50% -20%,rgba(120,119,198,0.3), hsla(0,0%,100%,0));
   }
 }

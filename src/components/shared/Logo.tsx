@@ -5,22 +5,26 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 256 256"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       {...props}
       className={cn(props.className)}
     >
+      <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2Z" fill="hsl(var(--primary))" opacity="0.1" stroke="none" />
+      <path d="M12 15a7 7 0 0 0 7-7c0-4-3-6-6-6s-6 2-6 6a7 7 0 0 0 7 7Z" fill="hsl(var(--primary))" opacity="0.2" stroke="none"/>
       <path
-        fill="hsl(var(--primary))"
-        d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88Z"
-        opacity="0.2"
+        d="M12,22C6.477,22,2,17.523,2,12C2,6.477,6.477,2,12,2c5.523,0,10,4.477,10,10c0,1.821-0.487,3.53-1.338,5"
+        stroke="hsl(var(--primary))"
+        strokeWidth="1.5"
       />
       <path
-        fill="hsl(var(--primary))"
-        d="M173.35 69.4a8 8 0 0 0-10.7-1.4l-64 40a8 8 0 0 0-2.52 11.83l32 51.2a8 8 0 0 0 13.8-8.11l-28.14-44.91l58.86-36.78a8 8 0 0 0-9.3-13.84Z"
-      />
-      <path
-        fill="hsl(var(--primary))"
-        d="M162.77 114.2a8 8 0 0 0-11.31 0L128 137.66l-23.46-23.46a8 8 0 0 0-11.32 11.31L122.34 149a8 8 0 0 0 11.32 0l32-32a8 8 0 0 0-2.89-11.31Z"
+        d="M18.5 14.5c-1.1 0-2.13.3-3 .8-1.74 1-3 2.7-3 4.7 0 1.9 1.4 3.5 3.5 3.5s3.5-1.6 3.5-3.5a2.5 2.5 0 0 0-2-2.4"
+        stroke="hsl(var(--primary))"
+        strokeWidth="1.5"
       />
     </svg>
   );

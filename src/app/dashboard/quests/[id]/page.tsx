@@ -20,6 +20,7 @@ import {
   ArrowLeft,
   Calendar,
   CheckSquare,
+  Image as ImageIcon,
 } from "lucide-react";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
@@ -129,6 +130,12 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
                     </div>
                 </div>
               <Button size="lg" className="w-full font-bold">Accept Quest</Button>
+              <Button asChild size="lg" variant="secondary" className="w-full font-bold">
+                <Link href={`/dashboard/quests/${quest.id}/generate-image`}>
+                  <ImageIcon className="mr-2 h-5 w-5" />
+                  Generate Quest Image
+                </Link>
+              </Button>
             </CardFooter>
           </Card>
         </div>

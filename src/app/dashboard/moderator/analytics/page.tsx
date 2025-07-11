@@ -68,7 +68,7 @@ export default function AnalyticsPage() {
               <BarChart data={categoryData} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type="number" />
-                <YAxis dataKey="name" type="category" width={120} />
+                <YAxis dataKey="name" type="category" width={120} interval={0} />
                 <Tooltip />
                 <Bar dataKey="value" fill="hsl(var(--primary))" name="Total Quests" />
               </BarChart>

@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { UserAvatar } from "@/components/shared/UserAvatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Award, Leaf, Shield, Spade, Droplets, Trash2 } from "lucide-react";
@@ -15,15 +15,13 @@ const badges = [
 
 export default function ProfilePage() {
     const completedQuests = questData.slice(0, 4);
+    const userName = "Juan dela Cruz";
   return (
     <div className="space-y-8">
       <div className="flex items-center gap-4">
-        <Avatar className="h-20 w-20 border-4 border-primary">
-          <AvatarImage src="https://placehold.co/80x80.png" alt="User avatar" data-ai-hint="user avatar" />
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
+        <UserAvatar name={userName} className="h-20 w-20 border-4 border-primary" />
         <div>
-          <h1 className="text-3xl font-bold font-headline">Juan dela Cruz</h1>
+          <h1 className="text-3xl font-bold font-headline">{userName}</h1>
           <p className="text-accent font-semibold">Mangrove Defender</p>
         </div>
       </div>

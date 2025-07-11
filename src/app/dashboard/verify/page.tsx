@@ -12,7 +12,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { submissionData as initialSubmissions } from "@/data/submissions";
 import {
   Dialog,
@@ -24,6 +23,7 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import { CheckCircle, XCircle } from "lucide-react";
+import { UserAvatar } from "@/components/shared/UserAvatar";
 
 export default function VerifyPage() {
   const [submissions, setSubmissions] = useState(initialSubmissions.filter(s => s.status === 'Pending'));
@@ -72,10 +72,7 @@ export default function VerifyPage() {
                 <TableRow key={submission.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
-                      <Avatar>
-                        <AvatarImage src={submission.userAvatar} data-ai-hint="user avatar" />
-                        <AvatarFallback>{submission.userName.substring(0,2)}</AvatarFallback>
-                      </Avatar>
+                      <UserAvatar name={submission.userName} src={submission.userAvatar} />
                       <span className="font-medium">{submission.userName}</span>
                     </div>
                   </TableCell>

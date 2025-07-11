@@ -15,11 +15,6 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -47,6 +42,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { ThemeToggle } from "../shared/ThemeToggle";
 import { Label } from '../ui/label';
+import { UserAvatar } from '../shared/UserAvatar';
 
 const standardMenuItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -67,6 +63,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   const [isModerator, setIsModerator] = React.useState(false);
   
   const menuItems = isModerator ? [...standardMenuItems, ...moderatorMenuItems] : standardMenuItems;
+  const userName = "Juan dela Cruz";
 
   return (
     <SidebarProvider>
@@ -136,14 +133,11 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             </div>
              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Avatar className="h-9 w-9 cursor-pointer">
-                        <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="user avatar" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
+                    <UserAvatar name={userName} className="h-9 w-9 cursor-pointer" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="end" className="w-56">
                     <DropdownMenuLabel>
-                      <p className="font-medium">Juan dela Cruz</p>
+                      <p className="font-medium">{userName}</p>
                       <p className="text-xs text-muted-foreground font-normal">Mangrove Defender</p>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />

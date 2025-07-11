@@ -126,7 +126,7 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
                     <span className="text-muted-foreground">Rewards</span>
                     <div className="flex items-center gap-2">
                         <Coins className="h-6 w-6 text-yellow-500" />
-                        <span className="text-xl font-bold">{quest.tokens} $CARE</span>
+                        <span className="text-xl font-bold">{quest.tokens} Moral</span>
                     </div>
                 </div>
               <Button size="lg" className="w-full font-bold">Accept Quest</Button>

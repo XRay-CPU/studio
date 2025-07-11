@@ -25,7 +25,7 @@ export default function DashboardPage() {
 
       <div className="grid gap-4 md:grid-cols-3">
         <StatCard
-          title="$CARE Balance"
+          title="Moral Balance"
           value="1,250"
           icon={<Coins className="h-6 w-6 text-yellow-500" />}
           description="Tokens earned from quests"

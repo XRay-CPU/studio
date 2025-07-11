@@ -43,7 +43,7 @@ export default function ProfilePage() {
             </div>
             <div className="p-4 bg-muted rounded-lg">
                 <p className="text-2xl font-bold">1,250</p>
-                <p className="text-sm text-muted-foreground">$CARE Tokens</p>
+                <p className="text-sm text-muted-foreground">Moral Tokens</p>
             </div>
             <div className="p-4 bg-muted rounded-lg">
                 <p className="text-2xl font-bold">250</p>

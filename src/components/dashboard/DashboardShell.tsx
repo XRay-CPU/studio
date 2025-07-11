@@ -129,7 +129,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
             <div className="flex items-center gap-2">
                 <Coins className="h-5 w-5 text-yellow-500" />
-                <span className="font-bold">1,250 $CARE</span>
+                <span className="font-bold">1,250 Moral</span>
             </div>
              <DropdownMenu>
                 <DropdownMenuTrigger asChild>

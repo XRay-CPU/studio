@@ -28,7 +28,7 @@ const features = [
     icon: <Award className="h-8 w-8 text-primary" />,
     title: 'Rewarding Action',
     description:
-      'Earn $CARE tokens and unique digital collectibles for your environmental stewardship, turning impact into tangible value.',
+      'Earn Moral tokens and unique digital collectibles for your environmental stewardship, turning impact into tangible value.',
   },
 ];
 

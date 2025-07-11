@@ -19,7 +19,7 @@ import { PlusCircle, FileText } from "lucide-react";
 const proposals = [
   {
     id: "prop-001",
-    title: "Adjust $CARE rewards for Reforestation Quests by 10%",
+    title: "Adjust Moral rewards for Reforestation Quests by 10%",
     status: "Voting Active",
     proposer: "Juan dela Cruz",
     votesFor: 75,

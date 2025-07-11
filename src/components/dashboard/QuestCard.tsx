@@ -36,7 +36,7 @@ export function QuestCard({ quest }: QuestCardProps) {
         <div className="flex justify-between w-full text-sm">
             <div className="flex items-center gap-1">
                 <Coins className="h-4 w-4 text-yellow-500" />
-                <span className="font-semibold">{quest.tokens} $CARE</span>
+                <span className="font-semibold">{quest.tokens} Moral</span>
             </div>
             <div className="flex items-center gap-1">
                 <Zap className="h-4 w-4 text-orange-500" />

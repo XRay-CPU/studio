@@ -55,30 +55,15 @@
   }
 }
 
-@layer utilities {
-  .hexagon {
-    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
-  }
-}
-
 body {
   @apply bg-transparent text-foreground;
 }
 
-.bg-pattern-light {
-  background-color: hsl(120, 20%, 99%);
-  background-image:
-    radial-gradient(hsl(120, 15%, 90%) 1px, transparent 1px),
-    radial-gradient(hsl(120, 15%, 90%) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: 0 0, 20px 20px;
-}
-
-.bg-pattern-dark {
+.bg-pattern {
   background-color: hsl(120, 10%, 12%);
   background-image:
-    radial-gradient(hsl(120, 5%, 20%) 1px, transparent 1px),
-    radial-gradient(hsl(120, 5%, 20%) 1px, transparent 1px);
+    radial-gradient(hsl(120, 5%, 15%) 1px, transparent 1px),
+    radial-gradient(hsl(120, 5%, 15%) 1px, transparent 1px);
   background-size: 40px 40px;
   background-position: 0 0, 20px 20px;
 }

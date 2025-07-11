@@ -63,7 +63,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="features" className="py-12 md:py-24 relative">
+        <section id="features" className="py-12 md:py-24 bg-background/30 backdrop-blur-sm">
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl md:text-4xl font-headline font-bold">
@@ -77,21 +77,11 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
-                <div key={index} className="flex flex-col items-center text-center group">
-                  <div
-                    className="hexagon bg-card/60 backdrop-blur-sm border-2 border-primary/20 w-64 h-72 flex flex-col justify-center items-center p-8 transition-all duration-300 hover:border-primary/50 hover:scale-105"
-                  >
-                    <div className="mb-4 text-primary transition-transform duration-300 group-hover:scale-110">
-                      {feature.icon}
-                    </div>
-                    <h3 className="text-xl font-bold font-headline mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
+                <Card key={index} className="bg-card/60 backdrop-blur-sm border-border/20 text-center p-8 flex flex-col items-center">
+                  <div className="mb-4 text-primary">{feature.icon}</div>
+                  <h3 className="text-xl font-bold font-headline mb-2">{feature.title}</h3>
+                  <p className="text-muted-foreground text-sm">{feature.description}</p>
+                </Card>
               ))}
             </div>
           </div>

@@ -15,26 +15,21 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       className={cn(props.className)}
     >
       <path
-        d="M12,2A10,10,0,0,0,8.2,21.12"
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Z"
         stroke="hsl(var(--primary))"
         fill="hsl(var(--primary))"
         opacity="0.1"
       />
-      <path d="M12,2a10,10,0,0,0,4.8,18.53" fill="none" stroke="hsl(var(--primary))" />
-      <path d="M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10" fill="none" stroke="hsl(var(--primary))" />
-
-      {/* <!-- Circuit lines inside the leaf --> */}
-      <path d="M12,9 v-2" stroke="hsl(var(--primary))" opacity="0.6" />
-      <path d="M12,9 h-2" stroke="hsl(var(--primary))" opacity="0.6" />
-      <path d="M12,15 v2" stroke="hsl(var(--primary))" opacity="0.6" />
-      <path d="M12,15 h2" stroke="hsl(var(--primary))" opacity="0.6" />
-
-      <circle cx="10" cy="9" r="0.5" fill="hsl(var(--primary))" opacity="0.8" />
-      <circle cx="14" cy="15" r="0.5" fill="hsl(var(--primary))" opacity="0.8" />
-      
-      <path d="M10,9.5 v2 h2" stroke="hsl(var(--primary))" opacity="0.6" />
-      <path d="M14,14.5 v-2 h-2" stroke="hsl(var(--primary))" opacity="0.6" />
-
+      <path
+        d="M12,22C17.5228,22 22,17.5228 22,12C22,6.47715 17.5228,2 12,2C6.47715,2 2,6.47715 2,12C2,17.5228 6.47715,22 12,22Z"
+        stroke="hsl(var(--primary))"
+        strokeWidth="1.5"
+      />
+      {/* Leaf Vein / Circuit */}
+      <path d="M12 20V8" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+      <path d="M10 12h4" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+      <path d="M10 15h4" stroke="hsl(var(--primary))" strokeWidth="1.5" />
+      <path d="M9 18h6" stroke="hsl(var(--primary))" strokeWidth="1.5" />
     </svg>
   );
 }

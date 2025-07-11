@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Leaf, Lock, Mail, User } from "lucide-react";
+import { Lock, Mail, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 
@@ -71,10 +71,7 @@ export function SignUpForm() {
             <Label htmlFor="interests">Primary Interest</Label>
             <Select>
               <SelectTrigger id="interests" className="w-full">
-                <Leaf className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <div className="pl-5">
-                    <SelectValue placeholder="Select your interest" />
-                </div>
+                <SelectValue placeholder="Select your interest" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="marine">Marine Protection</SelectItem>

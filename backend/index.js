@@ -1,11 +1,14 @@
 // Basic Express.js server setup for Solidity integration
 
+
 const express = require('express');
 const { ethers } = require('ethers');
 const db = require('./db');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Connect to Ethereum

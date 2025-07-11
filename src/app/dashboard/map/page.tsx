@@ -1,4 +1,5 @@
-import { EcoMap } from "@/components/dashboard/EcoMap";
+import dynamic from 'next/dynamic';
+const GoogleMapEcoSpots = dynamic(() => import('../../../components/dashboard/GoogleMapEcoSpots'), { ssr: false });
 
 export default function MapPage() {
   return (
@@ -10,7 +11,7 @@ export default function MapPage() {
         </p>
       </div>
       <div className="h-[70vh] w-full">
-        <EcoMap />
+        <GoogleMapEcoSpots />
       </div>
     </div>
   );

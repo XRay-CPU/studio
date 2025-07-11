@@ -86,56 +86,10 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         </SidebarContent>
         <SidebarFooter className="group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:items-center">
            <div className="group-data-[collapsible=icon]:hidden w-full flex items-center justify-between gap-2 p-2">
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="justify-start w-full p-2">
-                        <Avatar className="h-8 w-8 mr-2">
-                        <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="user avatar" />
-                        <AvatarFallback>JD</AvatarFallback>
-                        </Avatar>
-                        <div className="text-left">
-                            <p className="text-sm font-medium">Juan dela Cruz</p>
-                            <p className="text-xs text-muted-foreground">Mangrove Defender</p>
-                        </div>
-                    </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent side="right" align="start" className="w-56">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                        <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                        <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>
-                    </DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
                 <ThemeToggle />
            </div>
            
            <div className="hidden group-data-[collapsible=icon]:flex flex-col gap-2 items-center p-2">
-             <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Avatar className="h-8 w-8 cursor-pointer">
-                        <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="user avatar" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent side="right" align="start" className="w-56">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                        <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                        <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
             <ThemeToggle />
            </div>
 
@@ -155,6 +109,29 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                 <Coins className="h-5 w-5 text-yellow-500" />
                 <span className="font-bold">1,250 $CARE</span>
             </div>
+             <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Avatar className="h-9 w-9 cursor-pointer">
+                        <AvatarImage src="https://placehold.co/40x40.png" alt="User avatar" data-ai-hint="user avatar" />
+                        <AvatarFallback>JD</AvatarFallback>
+                    </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent side="bottom" align="end" className="w-56">
+                    <DropdownMenuLabel>
+                      <p className="font-medium">Juan dela Cruz</p>
+                      <p className="text-xs text-muted-foreground font-normal">Mangrove Defender</p>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
             <SidebarTrigger className="md:hidden" />
           </div>
         </header>

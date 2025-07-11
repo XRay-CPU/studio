@@ -1,6 +1,7 @@
 
 "use client";
 
+import React from 'react';
 import {
   SidebarProvider,
   Sidebar,
@@ -27,32 +28,45 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  Award,
+  BarChart2,
   Coins,
+  Gavel,
   LayoutDashboard,
   LogOut,
   Map,
+  PlusCircle,
   Settings,
   ShieldCheck,
   Spade,
   User as UserIcon,
+  Switch,
 } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { ThemeToggle } from "../shared/ThemeToggle";
+import { Label } from '../ui/label';
 
-const menuItems = [
+const standardMenuItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/dashboard/quests", label: "Quests", icon: Spade },
   { href: "/dashboard/map", label: "Eco-Map", icon: Map },
-  { href: "/dashboard/rewards", label: "Rewards", icon: Award, disabled: true },
-  { href: "/dashboard/verify", label: "Verify", icon: ShieldCheck },
+  { href: "/dashboard/profile", label: "Profile", icon: UserIcon },
+];
+
+const moderatorMenuItems = [
+    { href: "/dashboard/moderator/quests", label: "Quest Management", icon: PlusCircle },
+    { href: "/dashboard/verify", label: "Verification", icon: ShieldCheck },
+    { href: "/dashboard/moderator/analytics", label: "Analytics", icon: BarChart2 },
+    { href: "/dashboard/moderator/governance", label: "Governance", icon: Gavel },
 ];
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [isModerator, setIsModerator] = React.useState(false);
+  
+  const menuItems = isModerator ? [...standardMenuItems, ...moderatorMenuItems] : standardMenuItems;
 
   return (
     <SidebarProvider>
@@ -102,10 +116,20 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-2">
             <SidebarTrigger className="hidden md:flex" />
             <h1 className="text-lg font-semibold md:text-xl">
-                {menuItems.find(item => item.href === pathname)?.label || 'Dashboard'}
+                {menuItems.find(item => pathname.startsWith(item.href))?.label || 'Dashboard'}
             </h1>
           </div>
           <div className="flex items-center gap-4 ml-auto">
+            <div className="flex items-center space-x-2">
+              <Label htmlFor="role-switcher" className='text-sm font-medium'>{isModerator ? 'Moderator' : 'Standard'}</Label>
+              <Switch
+                id="role-switcher"
+                checked={isModerator}
+                onCheckedChange={setIsModerator}
+                aria-label="Toggle moderator mode"
+              />
+            </div>
+
             <div className="flex items-center gap-2">
                 <Coins className="h-5 w-5 text-yellow-500" />
                 <span className="font-bold">1,250 $CARE</span>

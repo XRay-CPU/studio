@@ -40,6 +40,7 @@ import { Logo } from "@/components/shared/Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
+import { ThemeToggle } from "../shared/ThemeToggle";
 
 const menuItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -115,6 +116,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                 <Coins className="h-5 w-5 text-yellow-500" />
                 <span className="font-bold">1,250 $CARE</span>
             </div>
+            <ThemeToggle />
           </div>
         </header>
         <main className="flex-1 p-4 sm:p-6 lg:p-8 bg-background/95">

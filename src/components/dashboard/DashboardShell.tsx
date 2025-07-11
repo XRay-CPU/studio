@@ -1,3 +1,4 @@
+
 "use client";
 
 import {
@@ -85,7 +86,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           </SidebarMenu>
         </SidebarContent>
         <SidebarFooter className="group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:items-center">
-           <div className="group-data-[collapsible=icon]:hidden w-full flex items-center justify-between gap-2 p-2">
+           <div className="group-data-[collapsible=icon]:hidden w-full flex items-center justify-end gap-2 p-2">
                 <ThemeToggle />
            </div>
            

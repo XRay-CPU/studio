@@ -49,7 +49,6 @@ const standardMenuItems = [
   { href: "/dashboard/quests", label: "Quests", icon: Spade },
   { href: "/dashboard/map", label: "Eco-Map", icon: Map },
   { href: "/dashboard/wallet", label: "Wallet", icon: Wallet },
-  { href: "/dashboard/profile", label: "Profile", icon: UserIcon },
 ];
 
 const moderatorMenuItems = [
@@ -150,7 +149,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                         <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                        <Link href="/auth"><Users className="mr-2 h-4 w-4" />Switch Account</Link>
+                        <Link href="/auth"><Users className="mr-2 h-4 w-4" />Switch Role</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
                     <DropdownMenuSeparator />

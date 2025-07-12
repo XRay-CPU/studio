@@ -4,9 +4,11 @@ import { StatCard } from "@/components/dashboard/StatCard";
 import { TokenBalance } from "@/components/shared/TokenBalance";
 import { Coins } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useAnalytics } from "@/hooks/use-analytics";
 
 export function DashboardStats() {
   const [account, setAccount] = useState<string | null>(null);
+  const { data } = useAnalytics();
 
   useEffect(() => {
     const checkAccount = async () => {

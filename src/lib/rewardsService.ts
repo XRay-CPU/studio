@@ -11,13 +11,26 @@ export interface RewardMetadata {
 
 class RewardsService {
   private static instance: RewardsService;
-  private relayerPrivateKey: string;
   private provider: ethers.Provider;
-
+  
   private constructor() {
-    // Initialize with environment variables in production
-    this.relayerPrivateKey = process.env.NEXT_PUBLIC_RELAYER_PRIVATE_KEY || '';
-    this.provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_RPC_URL);
+    // Use the default VIC Testnet RPC URL if none is provided
+    const rpcUrl = process.env.NEXT_PUBLIC_RPC_URL || 'https://89.rpc.thirdweb.com/';
+    this.provider = new ethers.JsonRpcProvider(rpcUrl);
+  }
+
+  // Initialize with development mock for testing
+  private async getSignerForRewards(): Promise<ethers.Signer> {
+    if (typeof window === 'undefined') {
+      throw new Error('Window is not defined');
+    }
+
+    if (!window.ethereum) {
+      throw new Error('MetaMask is not installed');
+    }
+
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    return provider.getSigner();
   }
 
   public static getInstance(): RewardsService {
@@ -27,87 +40,118 @@ class RewardsService {
     return RewardsService.instance;
   }
 
-  // Create a signed message for gasless reward claim
-  public async createRewardSignature(reward: RewardMetadata): Promise<string> {
-    const wallet = new ethers.Wallet(this.relayerPrivateKey, this.provider);
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
-
-    // Create message hash
-    const messageHash = ethers.solidityPackedKeccak256(
-      ['address', 'uint256', 'string', 'uint256'],
-      [reward.recipient, ethers.parseEther(reward.amount), reward.questId, reward.timestamp]
-    );
-
-    // Sign the message
-    const signature = await wallet.signMessage(ethers.getBytes(messageHash));
-    return signature;
-  }
-
-  // Claim rewards without gas fees
+  // Claim rewards directly using user's wallet
   public async claimReward(reward: RewardMetadata): Promise<string> {
-    if (!reward.signature) {
-      reward.signature = await this.createRewardSignature(reward);
-    }
-
-    const wallet = new ethers.Wallet(this.relayerPrivateKey, this.provider);
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
-
     try {
-      // Platform pays for gas
-      const tx = await contract.executeReward(
+      const signer = await this.getSignerForRewards();
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+
+      // Get current gas price
+      const feeData = await this.provider.getFeeData();
+      const maxFeePerGas = feeData.maxFeePerGas || feeData.gasPrice;
+      const maxPriorityFeePerGas = feeData.maxPriorityFeePerGas;
+
+      // Prepare transaction options
+      const options: any = {};
+      if (maxFeePerGas) {
+        options.maxFeePerGas = maxFeePerGas;
+      }
+      if (maxPriorityFeePerGas) {
+        options.maxPriorityFeePerGas = maxPriorityFeePerGas;
+      }
+
+      // Call contract with optimized gas settings
+      const tx = await contract.transfer(
         reward.recipient,
         ethers.parseEther(reward.amount),
-        reward.questId,
-        reward.timestamp,
-        reward.signature
+        options
       );
       
       const receipt = await tx.wait();
+
+      // Emit event for UI updates
+      const event = new CustomEvent('rewardClaimed', {
+        detail: {
+          questId: reward.questId,
+          amount: reward.amount,
+          recipient: reward.recipient,
+          txHash: receipt.hash
+        }
+      });
+      window.dispatchEvent(event);
+
       return receipt.hash;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error claiming reward:', error);
+      if (error.code === 'ACTION_REJECTED') {
+        throw new Error('Transaction was rejected by user');
+      }
       throw error;
     }
   }
 
-  // Batch claim rewards for multiple users
+  // Batch claim rewards
   public async batchClaimRewards(rewards: RewardMetadata[]): Promise<string[]> {
-    const wallet = new ethers.Wallet(this.relayerPrivateKey, this.provider);
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, wallet);
-
-    const signedRewards = await Promise.all(
-      rewards.map(async (reward) => {
-        if (!reward.signature) {
-          reward.signature = await this.createRewardSignature(reward);
-        }
-        return reward;
-      })
-    );
-
     try {
-      const tx = await contract.batchExecuteRewards(
-        signedRewards.map(r => ({
-          recipient: r.recipient,
-          amount: ethers.parseEther(r.amount),
-          questId: r.questId,
-          timestamp: r.timestamp,
-          signature: r.signature
-        }))
-      );
-      
+      const signer = await this.getSignerForRewards();
+      const contract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+
+      // Get current gas price
+      const feeData = await this.provider.getFeeData();
+      const maxFeePerGas = feeData.maxFeePerGas || feeData.gasPrice;
+      const maxPriorityFeePerGas = feeData.maxPriorityFeePerGas;
+
+      // Prepare transaction options
+      const options: any = {};
+      if (maxFeePerGas) {
+        options.maxFeePerGas = maxFeePerGas;
+      }
+      if (maxPriorityFeePerGas) {
+        options.maxPriorityFeePerGas = maxPriorityFeePerGas;
+      }
+
+      // Prepare batch transfer data
+      const recipients = rewards.map(r => r.recipient);
+      const amounts = rewards.map(r => ethers.parseEther(r.amount));
+
+      // Execute batch transfer
+      const tx = await contract.batchTransfer(recipients, amounts, options);
       const receipt = await tx.wait();
-      return receipt.logs
-        .map(log => {
+
+      // Process events
+      const transferEvents = receipt.logs
+        .map((log: ethers.Log) => {
           try {
-            return contract.interface.parseLog(log);
+            return contract.interface.parseLog({
+              topics: log.topics,
+              data: log.data
+            });
           } catch {
             return null;
           }
         })
-        .filter(event => event && event.name === 'RewardClaimed')
-        .map(event => event.args.txHash);
-    } catch (error) {
+        .filter((event: any) => event && event.name === 'Transfer')
+        .map((event: any) => event.args.transactionHash);
+
+      // Emit events for UI updates
+      rewards.forEach((reward, index) => {
+        const event = new CustomEvent('rewardClaimed', {
+          detail: {
+            questId: reward.questId,
+            amount: reward.amount,
+            recipient: reward.recipient,
+            txHash: transferEvents[index]
+          }
+        });
+        window.dispatchEvent(event);
+      });
+
+      return transferEvents;
+    } catch (error: any) {
       console.error('Error batch claiming rewards:', error);
+      if (error.code === 'ACTION_REJECTED') {
+        throw new Error('Transaction was rejected by user');
+      }
       throw error;
     }
   }

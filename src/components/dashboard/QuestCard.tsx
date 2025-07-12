@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image';
 import type { Quest } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,6 +9,7 @@ import { Coins, MapPin, Zap, Loader2, Trophy, Flame } from 'lucide-react';
 import Link from 'next/link';
 import { useRewards } from '@/hooks/useRewards';
 import { useState, useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
 import {
   Tooltip,
   TooltipContent,
@@ -21,6 +24,7 @@ type QuestCardProps = {
 
 export function QuestCard({ quest }: QuestCardProps) {
   const { claimReward, isProcessing } = useRewards();
+  const { toast } = useToast();
   const [claimed, setClaimed] = useState(false);
   const [streak, setStreak] = useState(0);
   const [questProgress, setQuestProgress] = useState(0);
@@ -42,28 +46,57 @@ export function QuestCard({ quest }: QuestCardProps) {
   }, [quest.id]);
 
   const handleClaim = async () => {
+    if (!window.ethereum?.selectedAddress) {
+      // Show connect wallet message
+      toast({
+        title: "Wallet Not Connected",
+        description: "Please connect your wallet to claim rewards.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     try {
-      await claimReward({
+      const txHash = await claimReward({
         questId: quest.id,
         amount: quest.tokens.toString(),
-        recipient: window.ethereum?.selectedAddress || '',
+        recipient: window.ethereum.selectedAddress,
         timestamp: Date.now()
       });
+      
       setClaimed(true);
       
       // Update streak and progress
-      const userId = window.ethereum?.selectedAddress;
-      if (userId) {
-        const newStreak = streak + 1;
-        setStreak(newStreak);
-        localStorage.setItem(`streak_${userId}`, newStreak.toString());
+      const userId = window.ethereum.selectedAddress;
+      const newStreak = streak + 1;
+      setStreak(newStreak);
+      localStorage.setItem(`streak_${userId}`, newStreak.toString());
 
-        const newProgress = Math.min(questProgress + 25, 100);
-        setQuestProgress(newProgress);
-        localStorage.setItem(`progress_${userId}_${quest.id}`, newProgress.toString());
-      }
-    } catch (error) {
+      const newProgress = Math.min(questProgress + 25, 100);
+      setQuestProgress(newProgress);
+      localStorage.setItem(`progress_${userId}_${quest.id}`, newProgress.toString());
+
+      // Show success message with transaction hash
+      toast({
+        title: "Reward Claimed!",
+        description: (
+          <div className="mt-2 text-xs">
+            <p>Transaction Hash:</p>
+            <code className="block mt-1 p-2 bg-secondary rounded">
+              {txHash}
+            </code>
+          </div>
+        )
+      });
+    } catch (error: any) {
       console.error('Error claiming reward:', error);
+      
+      // Show user-friendly error message
+      toast({
+        title: "Failed to Claim Reward",
+        description: error.message || "Please try again later.",
+        variant: "destructive"
+      });
     }
   };
 

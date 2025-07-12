@@ -39,11 +39,12 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/shared/Logo";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "../ui/button";
 import { ThemeToggle } from "../shared/ThemeToggle";
 import { UserAvatar } from '../shared/UserAvatar';
 import { TokenBalance } from '../shared/TokenBalance';
+import { LogoutButton } from '../shared/LogoutButton';
 
 const standardMenuItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
@@ -62,7 +63,14 @@ const moderatorMenuItems = [
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isModerator, setIsModerator] = React.useState(false);
+  const [isModerator, setIsModerator] = React.useState(() => {
+    // Initialize from localStorage if available
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('isModerator');
+      return stored ? JSON.parse(stored) : false;
+    }
+    return false;
+  });
   const [account, setAccount] = React.useState<string | null>(null);
 
   React.useEffect(() => {
@@ -82,14 +90,12 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   }, []);
 
   React.useEffect(() => {
-    // A simple way to determine the role based on the URL path.
-    // In a real app, this would come from user session data.
-    if (pathname.includes('/dashboard/moderator') || pathname.includes('/dashboard/verify')) {
+    // Only update moderator status if user accesses moderator routes for the first time
+    if ((pathname.includes('/dashboard/moderator') || pathname.includes('/dashboard/verify')) && !isModerator) {
       setIsModerator(true);
-    } else {
-      setIsModerator(false);
+      localStorage.setItem('isModerator', 'true');
     }
-  }, [pathname]);
+  }, [pathname, isModerator]);
   
   const menuItems = isModerator ? [...standardMenuItems, ...moderatorMenuItems] : standardMenuItems;
   const userName = "Juan dela Cruz";
@@ -156,25 +162,43 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                 <DropdownMenuTrigger asChild>
                    <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                     <UserAvatar name={userName} className="h-9 w-9" />
+                    {isModerator && (
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+                        <ShieldCheck className="w-3 h-3 text-primary-foreground" />
+                      </div>
+                    )}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="end" className="w-56">
                     <DropdownMenuLabel>
                       <p className="font-medium">{userName}</p>
-                      <p className="text-xs text-muted-foreground font-normal">Mangrove Defender</p>
+                      <p className="text-xs text-muted-foreground font-normal">
+                        {isModerator ? 'Moderator' : 'Mangrove Defender'}
+                      </p>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
-                        <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
+                        <Link href="/dashboard/profile" className="w-full">
+                          <UserIcon className="mr-2 h-4 w-4" />Profile
+                        </Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                        <Link href="/auth"><Users className="mr-2 h-4 w-4" />Switch Role</Link>
+                    {isModerator && (
+                      <DropdownMenuItem
+                        onClick={() => {
+                          setIsModerator(false);
+                          localStorage.removeItem('isModerator');
+                        }}
+                        className="text-yellow-600 dark:text-yellow-400"
+                      >
+                        <ShieldCheck className="mr-2 h-4 w-4" />
+                        Exit Moderator Mode
+                      </DropdownMenuItem>
+                    )}
+                    <DropdownMenuItem>
+                      <Settings className="mr-2 h-4 w-4" />Settings
                     </DropdownMenuItem>
-                    <DropdownMenuItem><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                        <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>
-                    </DropdownMenuItem>
+                    <LogoutButton />
                 </DropdownMenuContent>
             </DropdownMenu>
             <SidebarTrigger className="md:hidden" />

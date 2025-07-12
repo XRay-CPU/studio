@@ -2,18 +2,22 @@
 "use client";
 
 import dynamic from 'next/dynamic';
-const GoogleMapEcoSpots = dynamic(() => import('../../../components/dashboard/GoogleMapEcoSpots'), { ssr: false });
+
+const GoogleMapEcoSpots = dynamic(
+  () => import('../../../components/dashboard/GoogleMapEcoSpots'),
+  { ssr: false }
+);
 
 export default function MapPage() {
   return (
-    <div className="space-y-8 h-full">
+    <div className="space-y-8">
       <div>
         <h1 className="text-3xl font-bold font-headline">Interactive Eco-Map</h1>
         <p className="text-muted-foreground">
-          Discover quests across the Philippines. Click on a pin to learn more.
+          Discover eco spots across the Philippines.
         </p>
       </div>
-      <div className="h-[70vh] w-full">
+      <div style={{ height: '500px', width: '100%' }}>
         <GoogleMapEcoSpots />
       </div>
     </div>

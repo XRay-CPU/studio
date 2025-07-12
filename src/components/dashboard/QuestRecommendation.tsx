@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
 import { getQuestRecommendations } from '@/app/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -11,8 +12,19 @@ import { Wand2, Loader2 } from 'lucide-react';
 import { useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { QuestCard } from './QuestCard';
+import type { Quest } from '@/types';
 
-const initialState = {
+type RecommendationState = {
+  message?: string | null;
+  errors?: {
+    interests?: string[];
+    skillset?: string[];
+    travelPlans?: string[];
+  } | null;
+  recommendedQuests?: Quest[] | null;
+};
+
+const initialState: RecommendationState = {
   message: null,
   errors: null,
   recommendedQuests: null,
@@ -38,7 +50,7 @@ function SubmitButton() {
 }
 
 export function QuestRecommendation() {
-  const [state, formAction] = useFormState(getQuestRecommendations, initialState);
+  const [state, formAction] = useActionState(getQuestRecommendations, initialState);
   const { toast } = useToast();
 
   useEffect(() => {

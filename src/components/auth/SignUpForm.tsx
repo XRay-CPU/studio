@@ -12,22 +12,24 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Lock, Mail, User } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 
 export function SignUpForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { toast } = useToast();
-  const [role, setRole] = React.useState("user");
+  const role = searchParams.get('role') || 'user';
+  
+  const roleName = role === 'moderator' ? 'Quest Marshal' : 'Bayani';
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const redirectPath = role === 'moderator' ? '/dashboard/verify' : '/dashboard';
     toast({
       title: "Account Created!",
-      description: `Welcome! You are signing up as a ${role === 'user' ? 'Bayani' : 'Quest Marshal'}. Redirecting...`,
+      description: `Welcome! You have signed up as a ${roleName}. Redirecting...`,
     });
     setTimeout(() => router.push(redirectPath), 1500);
   };
@@ -35,7 +37,7 @@ export function SignUpForm() {
   return (
     <Card className="w-full max-w-md shadow-2xl bg-card/60 backdrop-blur-lg border-border/20">
       <CardHeader>
-        <CardTitle className="text-2xl font-headline">Create Your Account</CardTitle>
+        <CardTitle className="text-2xl font-headline">Create Your {roleName} Account</CardTitle>
         <CardDescription>
           Begin your eco-hero adventure today.
         </CardDescription>
@@ -64,32 +66,6 @@ export function SignUpForm() {
             </div>
           </div>
           
-          <div className="space-y-3">
-             <Label>Choose your role</Label>
-            <RadioGroup defaultValue="user" onValueChange={setRole} className="grid grid-cols-2 gap-4">
-              <div>
-                <RadioGroupItem value="user" id="user" className="peer sr-only" />
-                <Label
-                  htmlFor="user"
-                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                >
-                  Bayani
-                  <span className="text-xs text-muted-foreground">Regular User</span>
-                </Label>
-              </div>
-              <div>
-                <RadioGroupItem value="moderator" id="moderator" className="peer sr-only" />
-                 <Label
-                  htmlFor="moderator"
-                  className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
-                >
-                  Quest Marshal
-                  <span className="text-xs text-muted-foreground">Moderator</span>
-                </Label>
-              </div>
-            </RadioGroup>
-          </div>
-
           <Button type="submit" className="w-full font-bold">
             Start Your Adventure
           </Button>

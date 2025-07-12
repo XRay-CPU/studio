@@ -43,13 +43,14 @@ import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { ThemeToggle } from "../shared/ThemeToggle";
 import { UserAvatar } from '../shared/UserAvatar';
+import { TokenBalance } from '../shared/TokenBalance';
 
 const standardMenuItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/dashboard/quests", label: "Quests", icon: Spade },
   { href: "/dashboard/map", label: "Eco-Map", icon: Map },
   { href: "/dashboard/wallet", label: "Wallet", icon: Wallet },
-  { href: "/dashboard/moderators", label: "Moderators", icon: Users },
+  { href: "/dashboard/leaderboard", label: "Bayani's Leaderboard", icon: Users },
 ];
 
 const moderatorMenuItems = [
@@ -62,6 +63,23 @@ const moderatorMenuItems = [
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isModerator, setIsModerator] = React.useState(false);
+  const [account, setAccount] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const checkAccount = async () => {
+      if (typeof window.ethereum !== 'undefined') {
+        const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        setAccount(accounts[0] || null);
+
+        // Listen for account changes
+        window.ethereum.on('accountsChanged', (newAccounts: string[]) => {
+          setAccount(newAccounts[0] || null);
+        });
+      }
+    };
+
+    checkAccount();
+  }, []);
 
   React.useEffect(() => {
     // A simple way to determine the role based on the URL path.
@@ -131,7 +149,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             <Button asChild variant="ghost" className="font-bold">
               <Link href="/dashboard/wallet">
                 <Coins className="h-5 w-5 text-yellow-500 mr-2" />
-                <span>1,250 Moral</span>
+                <TokenBalance address={account} />
               </Link>
             </Button>
              <DropdownMenu>

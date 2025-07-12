@@ -2,6 +2,7 @@ import { StatCard } from "@/components/dashboard/StatCard";
 import { QuestCard } from "@/components/dashboard/QuestCard";
 import { questData } from "@/data/quests";
 import { Coins, ShieldCheck, Spade } from "lucide-react";
+import { DashboardStats } from "@/components/dashboard/DashboardStats";
 import {
   Card,
   CardContent,
@@ -24,12 +25,7 @@ export default function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <StatCard
-          title="Moral Balance"
-          value="1,250"
-          icon={<Coins className="h-6 w-6 text-yellow-500" />}
-          description="Tokens earned from quests"
-        />
+        <DashboardStats />
         <StatCard
           title="Quests Completed"
           value="8"

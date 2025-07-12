@@ -1,100 +1,62 @@
-// Basic Express.js server setup for Solidity integration
-
-
-const express = require('express');
-const { ethers } = require('ethers');
-const db = require('./db');
-const cors = require('cors');
 require('dotenv').config();
+const { ethers } = require('ethers');
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+async function readVRC25Data() {
+    // Your Viction Testnet RPC URL from.env
+    const rpcUrl = process.env.VIC_TESTNET_RPC_URL;
+    const provider = new ethers.JsonRpcProvider(rpcUrl);
 
-// Connect to Ethereum
-const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+    // The address of your deployed SimpleVRC25Token contract from Day 2
+    const contractAddress = "YOUR_DEPLOYED_CONTRACT_ADDRESS";
 
-// Example contract ABI and address (replace with your own)
-const contractABI = [
-  // Example function
-  "function getValue() public view returns (uint256)",
-  "function setValue(uint256 _value) public",
-  "function transfer(address _to, uint256 _value) public returns (bool)",
-  "event Transfer(address indexed from, address indexed to, uint256 value)"
-];
-const contractAddress = process.env.CONTRACT_ADDRESS;
+    // A small part of the contract's ABI (Application Binary Interface)
+    // This tells ethers.js what functions the contract has
+    const minABI = [
+        "function name() view returns (string)",
+        "function symbol() view returns (string)",
+        "function decimals() view returns (uint8)",
+        "function balanceOf(address account) view returns (uint256)",
+        "function issuer() view returns (address)",
+        "function minFee() view returns (uint256)",
+        "function estimateFee(uint256 value) view returns (uint256)"
+    ];
 
-const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-const contract = new ethers.Contract(contractAddress, contractABI, wallet);
+    const tokenContract = new ethers.Contract(contractAddress, minABI, provider);
 
-// GET endpoint to read from contract
-app.get('/value', async (req, res) => {
-  try {
-    const value = await contract.getValue();
-    res.json({ value: value.toString() });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+    console.log("--- Reading VRC25 Token Data ---");
 
-// POST endpoint to write to contract
-app.post('/value', async (req, res) => {
-  try {
-    const { value } = req.body;
-    const tx = await contract.setValue(value);
-    await tx.wait();
-    res.json({ success: true, txHash: tx.hash });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+    try {
+        const name = await tokenContract.name();
+        console.log(`Token Name: ${name}`);
 
-// POST endpoint to transfer tokens and log to DB
-app.post('/transfer', async (req, res) => {
-  try {
-    const { to, value } = req.body;
-    const tx = await contract.transfer(to, value);
-    const receipt = await tx.wait();
-    // Find Transfer event in logs
-    const transferEvent = receipt.logs
-      .map(log => {
-        try {
-          return contract.interface.parseLog(log);
-        } catch {
-          return null;
-        }
-      })
-      .find(e => e && e.name === 'Transfer');
-    if (transferEvent) {
-      const { from, to: toAddr, value: val } = transferEvent.args;
-      db.run(
-        'INSERT INTO transfers (from_address, to_address, value, tx_hash) VALUES (?, ?, ?, ?)',
-        [from, toAddr, val.toString(), tx.hash],
-        (err) => {
-          if (err) {
-            console.error('DB insert error:', err);
-          }
-        }
-      );
+        const symbol = await tokenContract.symbol();
+        console.log(`Token Symbol: ${symbol}`);
+
+        const decimals = await tokenContract.decimals();
+        console.log(`Token Decimals: ${decimals}`);
+
+        const issuerAddress = await tokenContract.issuer();
+        console.log(`Token Issuer: ${issuerAddress}`);
+
+        const minFee = await tokenContract.minFee();
+        console.log(`Minimum Fee (raw): ${minFee.toString()}`);
+        console.log(`Minimum Fee (formatted): ${ethers.formatUnits(minFee, decimals)}`);
+
+        // Replace with a wallet address to check its token balance (e.g., your MetaMask address)
+        const accountAddress = "YOUR_WALLET_ADDRESS_TO_CHECK";
+        const balance = await tokenContract.balanceOf(accountAddress);
+        console.log(`Balance of ${accountAddress} (raw): ${balance.toString()}`);
+        console.log(`Balance of ${accountAddress} (formatted): ${ethers.formatUnits(balance, decimals)}`);
+
+        // Estimate fee for sending 1 token
+        const valueToEstimate = ethers.parseUnits("1", decimals);
+        const estimatedFee = await tokenContract.estimateFee(valueToEstimate);
+        console.log(`Estimated Fee for 1 token transfer (raw): ${estimatedFee.toString()}`);
+        console.log(`Estimated Fee for 1 token transfer (formatted): ${ethers.formatUnits(estimatedFee, decimals)}`);
+
+    } catch (error) {
+        console.error("Error reading contract data:", error);
     }
-    res.json({ success: true, txHash: tx.hash });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+}
 
-// GET endpoint to fetch transfer history from DB
-app.get('/transfers', (req, res) => {
-  db.all('SELECT * FROM transfers ORDER BY timestamp DESC', [], (err, rows) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-    } else {
-      res.json(rows);
-    }
-  });
-});
-
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Express server running on port ${PORT}`);
-});
+readVRC25Data();

@@ -37,13 +37,11 @@ import {
   Users,
   Wallet,
 } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
 import { Logo } from "@/components/shared/Logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import { ThemeToggle } from "../shared/ThemeToggle";
-import { Label } from '../ui/label';
 import { UserAvatar } from '../shared/UserAvatar';
 
 const standardMenuItems = [
@@ -64,6 +62,16 @@ const moderatorMenuItems = [
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isModerator, setIsModerator] = React.useState(false);
+
+  React.useEffect(() => {
+    // A simple way to determine the role based on the URL path.
+    // In a real app, this would come from user session data.
+    if (pathname.includes('/dashboard/moderator') || pathname.includes('/dashboard/verify')) {
+      setIsModerator(true);
+    } else {
+      setIsModerator(false);
+    }
+  }, [pathname]);
   
   const menuItems = isModerator ? [...standardMenuItems, ...moderatorMenuItems] : standardMenuItems;
   const userName = "Juan dela Cruz";
@@ -120,16 +128,6 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             </h1>
           </div>
           <div className="flex items-center gap-4 ml-auto">
-            <div className="flex items-center space-x-2">
-              <Label htmlFor="role-switcher" className='text-sm font-medium'>{isModerator ? 'Moderator' : 'Standard'}</Label>
-              <Switch
-                id="role-switcher"
-                checked={isModerator}
-                onCheckedChange={setIsModerator}
-                aria-label="Toggle moderator mode"
-              />
-            </div>
-
             <Button asChild variant="ghost" className="font-bold">
               <Link href="/dashboard/wallet">
                 <Coins className="h-5 w-5 text-yellow-500 mr-2" />
@@ -138,7 +136,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             </Button>
              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                   <Button variant="ghost" className="relative h-9 w-9 rounded-full">
                     <UserAvatar name={userName} className="h-9 w-9" />
                   </Button>
                 </DropdownMenuTrigger>

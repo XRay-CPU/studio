@@ -7,18 +7,30 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="hsl(var(--primary))"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
       {...props}
       className={cn(props.className)}
     >
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="hsl(var(--primary))" />
-      <path d="M12 12c-2-2.5-2.5-6-1-7.5" stroke="hsl(var(--primary))" />
-      <path d="M12 12c2-2.5 2.5-6 1-7.5" stroke="hsl(var(--primary))" />
-      <path d="M12 12v6" stroke="hsl(var(--primary))" />
-      <path d="M10 14h4" stroke="hsl(var(--primary))" />
+      <title>Likas Bayani Logo</title>
+      {/* Outer Circle */}
+      <circle cx="12" cy="12" r="10" />
+      {/* Leaf Vein / Circuit */}
+      <path d="M12 2v4" />
+      <path d="M12 18v4" />
+      <path d="M12 12l-4 4" />
+      <path d="M12 12l4 4" />
+      <path d="M12 12l-4-4" />
+      <path d="M12 12l4-4" />
+      {/* Node Dots */}
+      <circle cx="12" cy="7" r="1" />
+      <circle cx="12" cy="17" r="1" />
+      <circle cx="7" cy="7" r="1" />
+      <circle cx="17" cy="7" r="1" />
+      <circle cx="7" cy="17" r="1" />
+      <circle cx="17" cy="17" r="1" />
     </svg>
   );
 }

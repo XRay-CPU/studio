@@ -9,7 +9,7 @@ import type { ReactNode } from "react";
 
 type StatCardProps = {
   title: string;
-  value: string;
+  value: ReactNode;
   icon: ReactNode;
   description?: string;
 };

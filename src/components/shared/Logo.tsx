@@ -17,9 +17,9 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       <title>Likas Bayani Logo</title>
       {/* Shield outline */}
       <path d="M12 2L4 5v6c0 5 3.58 9.64 8 11 4.42-1.36 8-6 8-11V5l-8-3z" />
-      {/* Leaf inside the shield */}
-      <path d="M12 17c-2.5-1.5-3.5-4-3.5-6 0-2 1.5-4 3.5-4s3.5 2 3.5 4c0 2-1 4.5-3.5 6z" />
-      <path d="M12 7v10" />
+      {/* Stylized leaf inside the shield */}
+      <path d="M14.5 9.5c-1-2.5-3-3-4.5-3-2.5 0-4.5 2-4.5 4.5 0 2.5 2 5.5 4.5 7 2.5-1.5 4.5-4.5 4.5-7Z" />
+      <path d="M12 15V7" />
     </svg>
   );
 }

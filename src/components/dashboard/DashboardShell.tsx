@@ -134,7 +134,9 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
             </div>
              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <UserAvatar name={userName} className="h-9 w-9 cursor-pointer" />
+                  <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                    <UserAvatar name={userName} className="h-9 w-9" />
+                  </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent side="bottom" align="end" className="w-56">
                     <DropdownMenuLabel>
@@ -148,7 +150,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                     <DropdownMenuItem asChild>
                         <Link href="/dashboard/profile"><Users className="mr-2 h-4 w-4" />Switch Account</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
+                    <DropdownMenuItem><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
                         <Link href="/"><LogOut className="mr-2 h-4 w-4" />Log out</Link>

@@ -152,7 +152,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                         <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                        <Link href="/dashboard/profile"><Users className="mr-2 h-4 w-4" />Switch Account</Link>
+                        <Link href="/auth"><Users className="mr-2 h-4 w-4" />Switch Account</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
                     <DropdownMenuSeparator />

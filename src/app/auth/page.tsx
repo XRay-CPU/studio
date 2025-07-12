@@ -7,7 +7,7 @@ export default function AuthPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center p-4">
       <div className="w-full max-w-4xl text-center">
-        <h1 className="text-4xl font-bold font-headline mb-4">Join as a...</h1>
+        <h1 className="text-4xl font-bold font-headline mb-4 text-foreground">Join as a...</h1>
         <p className="text-muted-foreground mb-8">Choose your path in the Likas Bayani ecosystem.</p>
         <div className="grid md:grid-cols-2 gap-8">
           <Card className="hover:border-primary transition-all bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/75">

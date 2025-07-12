@@ -34,6 +34,7 @@ import {
   ShieldCheck,
   Spade,
   User as UserIcon,
+  Users,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Logo } from "@/components/shared/Logo";
@@ -144,6 +145,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                     <DropdownMenuItem asChild>
                         <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
                     </DropdownMenuItem>
+                    <DropdownMenuItem disabled><Users className="mr-2 h-4 w-4" />Switch Account</DropdownMenuItem>
                     <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>

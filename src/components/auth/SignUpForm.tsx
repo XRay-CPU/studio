@@ -24,13 +24,12 @@ export function SignUpForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // In a real app, you'd handle form submission (e.g., API call)
-    // For this demo, we'll just show a toast and redirect.
+    const redirectPath = role === 'moderator' ? '/dashboard/verify' : '/dashboard';
     toast({
       title: "Account Created!",
       description: `Welcome! You are signing up as a ${role === 'user' ? 'Bayani' : 'Quest Marshal'}. Redirecting...`,
     });
-    setTimeout(() => router.push("/dashboard"), 1500);
+    setTimeout(() => router.push(redirectPath), 1500);
   };
 
   return (

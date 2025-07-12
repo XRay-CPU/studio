@@ -145,7 +145,9 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                     <DropdownMenuItem asChild>
                         <Link href="/dashboard/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem disabled><Users className="mr-2 h-4 w-4" />Switch Account</DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/profile"><Users className="mr-2 h-4 w-4" />Switch Account</Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem disabled><Settings className="mr-2 h-4 w-4" />Settings</DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>

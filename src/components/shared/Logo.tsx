@@ -15,15 +15,11 @@ export function Logo(props: SVGProps<SVGSVGElement>) {
       className={cn(props.className)}
     >
       <title>Likas Bayani Logo</title>
-      {/* Nature: Central Leaf */}
-      <path d="M12 2L8 8c0 2.5.5 5.5 4 8 3.5-2.5 4-5.5 4-8L12 2z" />
-      
-      {/* People Empowerment & Blockchain: Hands made of linked blocks */}
-      <path d="M8 14H6a2 2 0 00-2 2v2a2 2 0 002 2h2v-4z" />
-      <path d="M16 14h2a2 2 0 012 2v2a2 2 0 01-2 2h-2v-4z" />
-      <path d="M6 16h-.5a2.5 2.5 0 00-2.5 2.5V20" />
-      <path d="M18 16h.5a2.5 2.5 0 012.5 2.5V20" />
-      <path d="M8 20v-1a2 2 0 012-2h4a2 2 0 012 2v1" />
+      {/* Shield outline */}
+      <path d="M12 2L4 5v6c0 5 3.58 9.64 8 11 4.42-1.36 8-6 8-11V5l-8-3z" />
+      {/* Leaf inside the shield */}
+      <path d="M12 17c-2.5-1.5-3.5-4-3.5-6 0-2 1.5-4 3.5-4s3.5 2 3.5 4c0 2-1 4.5-3.5 6z" />
+      <path d="M12 7v10" />
     </svg>
   );
 }

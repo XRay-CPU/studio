@@ -12,3 +12,12 @@ export type Quest = {
   dataAiHint: string;
   todos: string[];
 };
+
+export type Moderator = {
+  id: string;
+  name: string;
+  avatar: string;
+  rating: number; // e.g., 4.5
+  verifications: number;
+  joinDate: string;
+};

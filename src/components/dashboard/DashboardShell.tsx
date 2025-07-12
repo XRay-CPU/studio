@@ -49,6 +49,7 @@ const standardMenuItems = [
   { href: "/dashboard/quests", label: "Quests", icon: Spade },
   { href: "/dashboard/map", label: "Eco-Map", icon: Map },
   { href: "/dashboard/wallet", label: "Wallet", icon: Wallet },
+  { href: "/dashboard/moderators", label: "Moderators", icon: Users },
 ];
 
 const moderatorMenuItems = [

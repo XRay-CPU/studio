@@ -35,6 +35,7 @@ import {
   Spade,
   User as UserIcon,
   Users,
+  Wallet,
 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Logo } from "@/components/shared/Logo";
@@ -49,6 +50,7 @@ const standardMenuItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/dashboard/quests", label: "Quests", icon: Spade },
   { href: "/dashboard/map", label: "Eco-Map", icon: Map },
+  { href: "/dashboard/wallet", label: "Wallet", icon: Wallet },
   { href: "/dashboard/profile", label: "Profile", icon: UserIcon },
 ];
 
@@ -128,10 +130,12 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               />
             </div>
 
-            <div className="flex items-center gap-2">
-                <Coins className="h-5 w-5 text-yellow-500" />
-                <span className="font-bold">1,250 Moral</span>
-            </div>
+            <Button asChild variant="ghost" className="font-bold">
+              <Link href="/dashboard/wallet">
+                <Coins className="h-5 w-5 text-yellow-500 mr-2" />
+                <span>1,250 Moral</span>
+              </Link>
+            </Button>
              <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" className="relative h-9 w-9 rounded-full">

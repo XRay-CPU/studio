@@ -75,9 +75,9 @@ export function ConnectWalletButton() {
       setAccount(accounts[0]);
       toast({
         title: "Wallet Connected!",
-        description: "Redirecting to your dashboard...",
+        description: "Redirecting to account creation...",
       });
-      setTimeout(() => router.push("/dashboard"), 1500);
+      setTimeout(() => router.push("/auth"), 1500);
     } catch (error: any) {
       console.error("Failed to connect wallet:", error);
       toast({

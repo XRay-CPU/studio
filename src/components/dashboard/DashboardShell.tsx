@@ -65,10 +65,13 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [isModerator, setIsModerator] = React.useState(false);
   const [account, setAccount] = React.useState<string | null>(null);
+  const [mounted, setMounted] = React.useState(false);
+
 
   React.useEffect(() => {
     // This effect runs only on the client, after the initial render.
     // This prevents a hydration mismatch.
+    setMounted(true);
     const stored = localStorage.getItem('isModerator');
     const modStatus = stored ? JSON.parse(stored) : false;
     
@@ -100,7 +103,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
     checkAccount();
   }, []);
   
-  const menuItems = isModerator ? [...standardMenuItems, ...moderatorMenuItems] : standardMenuItems;
+  const menuItems = (mounted && isModerator) ? [...standardMenuItems, ...moderatorMenuItems] : standardMenuItems;
   const userName = "Juan dela Cruz";
 
   return (

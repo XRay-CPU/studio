@@ -63,15 +63,26 @@ const moderatorMenuItems = [
 
 export function DashboardShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const [isModerator, setIsModerator] = React.useState(() => {
-    // Initialize from localStorage if available
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('isModerator');
-      return stored ? JSON.parse(stored) : false;
-    }
-    return false;
-  });
+  const [isModerator, setIsModerator] = React.useState(false);
   const [account, setAccount] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    // This effect runs only on the client, after the initial render.
+    // This prevents a hydration mismatch.
+    const stored = localStorage.getItem('isModerator');
+    const modStatus = stored ? JSON.parse(stored) : false;
+    
+    if (modStatus !== isModerator) {
+      setIsModerator(modStatus);
+    }
+
+    if ((pathname.includes('/dashboard/moderator') || pathname.includes('/dashboard/verify')) && !modStatus) {
+      setIsModerator(true);
+      localStorage.setItem('isModerator', 'true');
+    }
+
+  }, [pathname, isModerator]);
+
 
   React.useEffect(() => {
     const checkAccount = async () => {
@@ -88,14 +99,6 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
 
     checkAccount();
   }, []);
-
-  React.useEffect(() => {
-    // Only update moderator status if user accesses moderator routes for the first time
-    if ((pathname.includes('/dashboard/moderator') || pathname.includes('/dashboard/verify')) && !isModerator) {
-      setIsModerator(true);
-      localStorage.setItem('isModerator', 'true');
-    }
-  }, [pathname, isModerator]);
   
   const menuItems = isModerator ? [...standardMenuItems, ...moderatorMenuItems] : standardMenuItems;
   const userName = "Juan dela Cruz";
@@ -114,7 +117,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         <SidebarContent>
           <SidebarMenu>
             {menuItems.map((item) => (
-              <li key={item.href} data-sidebar="menu-item" className="group/menu-item relative">
+              <SidebarMenuItem key={item.href}>
                 <Link
                   href={item.href}
                   title={item.label}
@@ -131,7 +134,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                   <item.icon className="mr-2 h-4 w-4" />
                   <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
                 </Link>
-              </li>
+              </SidebarMenuItem>
             ))}
           </SidebarMenu>
         </SidebarContent>

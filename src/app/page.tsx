@@ -33,7 +33,6 @@ const features = [
   },
 ];
 
-//
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#0f2027] via-[#2c5364] to-[#232526] text-white">
@@ -61,10 +60,10 @@ export default function Home() {
           <svg className="absolute left-0 top-0 w-64 h-64 opacity-20 text-green-400 dark:text-green-700" fill="none" viewBox="0 0 256 256"><ellipse cx="128" cy="128" rx="120" ry="60" fill="currentColor" /></svg>
           <svg className="absolute right-0 bottom-0 w-64 h-64 opacity-10 text-blue-400 dark:text-blue-700" fill="none" viewBox="0 0 256 256"><ellipse cx="128" cy="128" rx="120" ry="60" fill="currentColor" /></svg>
           <div className="relative z-10 w-full max-w-4xl">
-            <Card className="bg-card/70 backdrop-blur-lg border-border/20 shadow-2xl">
-              <CardContent className="p-8 md:p-12 text-center space-y-8">
-                <Logo className="h-24 w-24 mx-auto animate-bounce-slow" />
-                <h1 className="text-4xl md:text-6xl font-headline font-extrabold text-foreground drop-shadow-lg">
+            <Card className="bg-primary/10 backdrop-blur-lg border-border/20 shadow-2xl">
+              <CardContent className="p-8 md:p-12 text-center space-y-6">
+                <Logo className="h-20 w-20 mx-auto" />
+                <h1 className="text-4xl md:text-6xl font-headline font-bold text-foreground">
                   Play. Preserve. Prosper.
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -173,4 +172,3 @@ export default function Home() {
     </div>
   );
 }
-

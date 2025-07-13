@@ -11,8 +11,11 @@ export type Submission = {
   userAvatar: string;
   submissionDate: string;
   status: SubmissionStatus;
-  evidencePhoto: string;
-  userNotes: string;
+  // Array of per-todo proofs: { url, note }
+  proofs: { url: string; note?: string }[];
+  // Deprecated: for backward compatibility
+  evidencePhoto?: string;
+  userNotes?: string;
 };
 
 export const submissionData: Submission[] = [
@@ -25,8 +28,10 @@ export const submissionData: Submission[] = [
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-20',
     status: 'Pending',
-    evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'We collected so much plastic from Quezon Island. The boatmen were a great help!'
+    proofs: [
+      { url: 'https://placehold.co/600x400.png', note: 'We collected so much plastic from Quezon Island. The boatmen were a great help!' },
+      { url: 'https://placehold.co/600x400.png', note: 'Second to-do proof for demo.' }
+    ]
   },
   {
     id: 'sub-002',
@@ -37,8 +42,9 @@ export const submissionData: Submission[] = [
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-19',
     status: 'Pending',
-    evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'Collected 3 large bags of plastic waste. Most of it was single-use plastic bottles and food wrappers.'
+    proofs: [
+      { url: 'https://placehold.co/600x400.png', note: 'Collected 3 large bags of plastic waste. Most of it was single-use plastic bottles and food wrappers.' }
+    ]
   },
   {
     id: 'sub-003',
@@ -49,10 +55,11 @@ export const submissionData: Submission[] = [
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-18',
     status: 'Pending',
-    evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'The team at UP MSI was so knowledgeable. It was amazing to see the giant clams up close.'
+    proofs: [
+      { url: 'https://placehold.co/600x400.png', note: 'The team at UP MSI was so knowledgeable. It was amazing to see the giant clams up close.' }
+    ]
   },
-    {
+  {
     id: 'sub-004',
     questId: 'san-fabian-mangrove-reforestation',
     questTitle: 'San Fabian Mangrove Reforestation',
@@ -61,8 +68,9 @@ export const submissionData: Submission[] = [
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-17',
     status: 'Verified',
-    evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'Planted 50 mangrove propagules with the local community group. Felt great!'
+    proofs: [
+      { url: 'https://placehold.co/600x400.png', note: 'Planted 50 mangrove propagules with the local community group. Felt great!' }
+    ]
   },
   {
     id: 'sub-005',
@@ -73,8 +81,9 @@ export const submissionData: Submission[] = [
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-16',
     status: 'Verified',
-    evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'Learned a lot about traditional salt making. The salt is delicious!'
+    proofs: [
+      { url: 'https://placehold.co/600x400.png', note: 'Learned a lot about traditional salt making. The salt is delicious!' }
+    ]
   },
   {
     id: 'sub-006',
@@ -85,7 +94,8 @@ export const submissionData: Submission[] = [
     userAvatar: 'https://placehold.co/40x40.png',
     submissionDate: '2024-07-15',
     status: 'Rejected',
-    evidencePhoto: 'https://placehold.co/600x400.png',
-    userNotes: 'Photo was blurry and did not clearly show the cleanup area. Could not verify the impact.'
+    proofs: [
+      { url: 'https://placehold.co/600x400.png', note: 'Photo was blurry and did not clearly show the cleanup area. Could not verify the impact.' }
+    ]
   },
 ];

@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import {
   Table,
   TableBody,
@@ -14,13 +15,42 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { questData as initialQuests } from "@/data/quests";
+const CreateQuestForm = dynamic(() => import("./CreateQuestForm"), { ssr: false });
 import { PlusCircle, Edit, Trash2 } from "lucide-react";
 
 export default function QuestManagementPage() {
   const [quests, setQuests] = useState(initialQuests);
 
+  const [showCreate, setShowCreate] = useState(false);
   // In a real app, these actions would trigger forms/modals and API calls.
-  const handleCreate = () => alert("Open 'Create Quest' form.");
+  const handleCreate = () => setShowCreate(true);
+  const handleCreateAction = (quest: import("./CreateQuestForm").CreateQuestInput) => {
+    // Only allow valid categories
+    const allowedCategories = [
+      "Marine Protection",
+      "Reforestation",
+      "Urban Greening",
+      "Waste Management",
+    ];
+    const safeCategory = allowedCategories.includes(quest.category)
+      ? (quest.category as typeof allowedCategories[number])
+      : "Marine Protection";
+    setQuests([
+      ...quests,
+      {
+        ...quest,
+        category: safeCategory as "Marine Protection" | "Reforestation" | "Urban Greening" | "Waste Management",
+        difficulty: (quest.difficulty as "Easy" | "Medium" | "Hard"),
+        id: `${quest.title.toLowerCase().replace(/\s+/g, '-')}-${Date.now()}`,
+        impactRating: 3,
+        partner: 'Organizer',
+        image: '',
+        dataAiHint: '',
+      },
+    ]);
+    setShowCreate(false);
+  };
+  const handleCancelAction = () => setShowCreate(false);
   const handleEdit = (id: string) => alert(`Open 'Edit Quest' form for ${id}.`);
   const handleDelete = (id: string) => {
     if (confirm("Are you sure you want to delete this quest?")) {
@@ -35,7 +65,7 @@ export default function QuestManagementPage() {
         <div>
           <h1 className="text-3xl font-bold font-headline">Quest Management</h1>
           <p className="text-muted-foreground">
-            Create, update, and manage all environmental quests.
+            Create, update, and manage all environmental quests. Organizers can batch approve group completions to save gas.
           </p>
         </div>
         <Button onClick={handleCreate}>
@@ -43,6 +73,14 @@ export default function QuestManagementPage() {
           Create Quest
         </Button>
       </div>
+      {showCreate && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-white dark:bg-zinc-900 rounded-lg shadow-lg p-6 w-full max-w-lg">
+            <h2 className="text-xl font-bold mb-4">Create New Quest</h2>
+            <CreateQuestForm onCreateAction={handleCreateAction} onCancelAction={handleCancelAction} />
+          </div>
+        </div>
+      )}
 
       <Card>
         <CardHeader>

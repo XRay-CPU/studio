@@ -10,16 +10,14 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { ArrowLeft, Loader2 } from 'lucide-react';
 
-export default function GenerateImagePage({
-  params,
-}: {
-  params: { id: string };
-}) {
+import * as React from 'react';
+export default function GenerateImagePage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = React.use(params);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const quest = questData.find((q) => q.id === params.id);
+  const quest = questData.find((q) => q.id === id);
 
   useEffect(() => {
     if (!quest) {

@@ -1,5 +1,6 @@
 import { questData } from "@/data/quests";
 import Image from "next/image";
+import QuestClientPanels from "./QuestClientPanels";
 import { notFound } from "next/navigation";
 import {
   Card,
@@ -28,8 +29,10 @@ import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
-export default function QuestDetailPage({ params }: { params: { id: string } }) {
-  const quest = questData.find((q) => q.id === params.id);
+import * as React from 'react';
+export default function QuestDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = React.use(params);
+  const quest = questData.find((q) => q.id === id);
 
   if (!quest) {
     notFound();
@@ -146,6 +149,7 @@ export default function QuestDetailPage({ params }: { params: { id: string } }) 
           </Card>
         </div>
       </div>
+      <QuestClientPanels questId={quest.id} />
     </div>
   );
 }

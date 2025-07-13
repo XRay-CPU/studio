@@ -10,30 +10,21 @@
 import { ai } from '@/ai/genkit';
 import { z } from 'genkit';
 
-export const GenerateQuestImageInputSchema = z.object({
+
+const GenerateQuestImageInputSchema = z.object({
   title: z.string().describe('The title of the quest.'),
   description: z.string().describe('The description of the quest.'),
 });
-export type GenerateQuestImageInput = z.infer<
-  typeof GenerateQuestImageInputSchema
->;
+type GenerateQuestImageInput = z.infer<typeof GenerateQuestImageInputSchema>;
 
-export const GenerateQuestImageOutputSchema = z.object({
+const GenerateQuestImageOutputSchema = z.object({
   imageUrl: z
     .string()
     .describe(
       "The data URI of the generated image. Expected format: 'data:<mimetype>;base64,<encoded_data>'."
     ),
 });
-export type GenerateQuestImageOutput = z.infer<
-  typeof GenerateQuestImageOutputSchema
->;
-
-export async function generateQuestImage(
-  input: GenerateQuestImageInput
-): Promise<GenerateQuestImageOutput> {
-  return generateQuestImageFlow(input);
-}
+type GenerateQuestImageOutput = z.infer<typeof GenerateQuestImageOutputSchema>;
 
 const generateQuestImageFlow = ai.defineFlow(
   {
@@ -50,7 +41,7 @@ const generateQuestImageFlow = ai.defineFlow(
       },
     });
 
-    if (!media.url) {
+    if (!media || !media.url) {
       throw new Error('Image generation failed.');
     }
 
@@ -59,3 +50,8 @@ const generateQuestImageFlow = ai.defineFlow(
     };
   }
 );
+
+
+export async function generateQuestImage(input: GenerateQuestImageInput): Promise<GenerateQuestImageOutput> {
+  return generateQuestImageFlow(input);
+}

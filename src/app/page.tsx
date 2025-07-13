@@ -33,7 +33,7 @@ const features = [
   },
 ];
 
-//
+export default function Home() {
 export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#0f2027] via-[#2c5364] to-[#232526] text-white">

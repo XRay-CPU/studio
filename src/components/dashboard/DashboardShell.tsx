@@ -113,21 +113,25 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         </SidebarHeader>
         <SidebarContent>
           <SidebarMenu>
-             {menuItems.map((item) => (
-              <SidebarMenuItem key={item.href} asChild>
-                 <Button
-                  asChild
-                  variant="ghost"
-                  className="w-full justify-start"
-                  
+            {menuItems.map((item) => (
+              <li key={item.href} data-sidebar="menu-item" className="group/menu-item relative">
+                <Link
+                  href={item.href}
+                  title={item.label}
+                  className={
+                    [
+                      "inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium w-full justify-start px-2 py-2 transition-colors",
+                      pathname === item.href
+                        ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                        : "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                    ].join(' ')
+                  }
                   data-active={pathname === item.href}
                 >
-                  <Link href={item.href} title={item.label}>
-                    <item.icon className="mr-2 h-4 w-4" />
-                     <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
-                  </Link>
-                </Button>
-              </SidebarMenuItem>
+                  <item.icon className="mr-2 h-4 w-4" />
+                  <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
+                </Link>
+              </li>
             ))}
           </SidebarMenu>
         </SidebarContent>

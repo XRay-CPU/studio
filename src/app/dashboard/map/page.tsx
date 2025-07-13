@@ -1,10 +1,14 @@
 "use client";
 import dynamic from 'next/dynamic';
+import { NearestQuestList } from "@/components/dashboard/NearestQuestList";
 
 const GoogleMapEcoSpots = dynamic(
   () => import('../../../components/dashboard/GoogleMapEcoSpots'),
   { ssr: false }
 );
+
+
+import { questData } from '@/data/quests';
 
 export default function MapPage() {
   return (
@@ -18,6 +22,7 @@ export default function MapPage() {
       <div style={{ height: '500px', width: '100%' }}>
         <GoogleMapEcoSpots />
       </div>
+      <NearestQuestList quests={questData} />
     </div>
   );
 }

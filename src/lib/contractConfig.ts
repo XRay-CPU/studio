@@ -3,6 +3,17 @@ export const CONTRACT_ADDRESS = "0xCDc7291aC9a6E77f00C4e1B8CafA521547a6887C";
 
 // Replace with your contract ABI after deployment
 export const CONTRACT_ABI = [
+  // Add the QuestCompleted event so ethers.js can listen for it
+  {
+	"anonymous": false,
+	"inputs": [
+	  { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
+	  { "indexed": false, "internalType": "uint256", "name": "questId", "type": "uint256" },
+	  { "indexed": false, "internalType": "uint256", "name": "reward", "type": "uint256" }
+	],
+	"name": "QuestCompleted",
+	"type": "event"
+  },
 			{
 				"inputs": [
 					{

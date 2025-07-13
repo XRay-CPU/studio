@@ -1,8 +1,9 @@
+
 import { SignUpForm } from '@/components/auth/SignUpForm';
 import { Logo } from '@/components/shared/Logo';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Info } from 'lucide-react';
 
 export default function SignUpPage() {
   return (
@@ -14,8 +15,17 @@ export default function SignUpPage() {
         </Link>
       </Button>
 
-      <div className="relative z-20 flex flex-col items-center space-y-6">
+      <div className="relative z-20 flex flex-col items-center space-y-6 w-full max-w-md">
         <Logo className="h-16 w-16" />
+        
+        <div className="w-full bg-primary/20 border border-primary/50 text-primary-foreground p-4 rounded-lg flex items-center gap-4">
+          <Info className="h-6 w-6 text-primary" />
+          <div>
+            <h4 className="font-bold">Just Testing?</h4>
+            <p className="text-sm text-primary-foreground/80">Feel free to use random information to create your account.</p>
+          </div>
+        </div>
+
         <SignUpForm />
       </div>
     </div>

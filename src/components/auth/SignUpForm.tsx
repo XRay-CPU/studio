@@ -35,11 +35,11 @@ export function SignUpForm() {
   };
 
   return (
-    <Card className="w-full max-w-md shadow-2xl bg-card/60 backdrop-blur-lg border-border/20">
+    <Card className="w-full shadow-2xl bg-card/60 backdrop-blur-lg border-border/20">
       <CardHeader>
         <CardTitle className="text-2xl font-headline">Create Your {roleName} Account</CardTitle>
         <CardDescription>
-          Begin your eco-hero adventure today. Feel free to use random information for now.
+          Begin your eco-hero adventure today.
         </CardDescription>
       </CardHeader>
       <CardContent>

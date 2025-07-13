@@ -15,16 +15,16 @@ function AutoSignIn() {
   const role = searchParams.get('role') || 'user';
   const roleName = role === 'moderator' ? 'Makabayan' : 'Bayani';
   const [countdown, setCountdown] = useState(3);
+  const redirectPath = role === 'moderator' ? '/dashboard/verify' : '/dashboard';
 
   useEffect(() => {
     if (countdown > 0) {
       const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
       return () => clearTimeout(timer);
     } else {
-      const redirectPath = role === 'moderator' ? '/dashboard/verify' : '/dashboard';
       router.push(redirectPath);
     }
-  }, [countdown, router, role, redirectPath]);
+  }, [countdown, router, redirectPath]);
 
   return (
     <Card className="w-full shadow-2xl bg-card/60 backdrop-blur-lg border-border/20">

@@ -51,7 +51,7 @@ export default function ModeratorReviewPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold font-headline">Quest Marshals</h1>
+        <h1 className="text-3xl font-bold font-headline">Makabayan</h1>
         <p className="text-muted-foreground">
           Review the performance and competence of our platform's moderators.
         </p>

@@ -22,7 +22,7 @@ export function SignUpForm() {
   const { toast } = useToast();
   const role = searchParams.get('role') || 'user';
   
-  const roleName = role === 'moderator' ? 'Quest Marshal' : 'Bayani';
+  const roleName = role === 'moderator' ? 'Makabayan' : 'Bayani';
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

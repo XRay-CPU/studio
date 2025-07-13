@@ -35,7 +35,7 @@ const proposals = [
   },
   {
     id: "prop-003",
-    title: "Introduce 'Quest Marshal' role for Tier 2 Verification",
+    title: "Introduce 'Makabayan' role for Tier 2 Verification",
     status: "Voting Active",
     proposer: "Andres Bonifacio",
     votesFor: 55,

@@ -177,7 +177,7 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
                     <DropdownMenuLabel>
                       <p className="font-medium">{userName}</p>
                       <p className="text-xs text-muted-foreground font-normal">
-                        {isModerator ? 'Moderator' : 'Mangrove Defender'}
+                        {isModerator ? 'Makabayan' : 'Bayani'}
                       </p>
                     </DropdownMenuLabel>
                     <DropdownMenuSeparator />

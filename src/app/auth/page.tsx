@@ -31,7 +31,7 @@ export default function AuthPage() {
           <Card className="hover:border-primary transition-all bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/75">
             <CardHeader>
               <Shield className="h-12 w-12 mx-auto text-blue-600 dark:text-blue-400" />
-              <CardTitle className="font-headline pt-4 text-foreground">Quest Marshal</CardTitle>
+              <CardTitle className="font-headline pt-4 text-foreground">Makabayan</CardTitle>
               <CardDescription className="text-muted-foreground/90">
                 Verify submissions, manage quests, and help maintain the integrity of the Likas Bayani platform.
               </CardDescription>
@@ -42,7 +42,7 @@ export default function AuthPage() {
                 className="w-full font-bold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600/90 dark:hover:bg-blue-600 text-white" 
                 asChild
               >
-                <Link href="/auth/signup?role=moderator">I am a Quest Marshal</Link>
+                <Link href="/auth/signup?role=moderator">I am a Makabayan</Link>
               </Button>
             </CardContent>
           </Card>

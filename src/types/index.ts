@@ -1,3 +1,4 @@
+
 export type Quest = {
   id: string;
   title: string;
@@ -20,4 +21,13 @@ export type Moderator = {
   rating: number; // e.g., 4.5
   verifications: number;
   joinDate: string;
+};
+
+export type Proposal = {
+  id: string;
+  title: string;
+  status: 'Voting Active' | 'Passed' | 'Failed';
+  proposer: string;
+  votesFor: number;
+  votesAgainst: number;
 };

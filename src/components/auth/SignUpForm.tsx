@@ -39,7 +39,7 @@ export function SignUpForm() {
       <CardHeader>
         <CardTitle className="text-2xl font-headline">Create Your {roleName} Account</CardTitle>
         <CardDescription>
-          Begin your eco-hero adventure today.
+          Begin your eco-hero adventure today. Feel free to use random information for now.
         </CardDescription>
       </CardHeader>
       <CardContent>

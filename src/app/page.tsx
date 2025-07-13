@@ -96,7 +96,11 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-emerald-200/80 to-transparent dark:from-emerald-900/80" />
         </section>
 
+<<<<<<< HEAD
         <section id="features" className="py-16 md:py-28 bg-background/60 backdrop-blur-sm relative">
+=======
+        <section id="features" className="py-12 md:py-24 bg-muted">
+>>>>>>> 021464b (Make the following changes:)
           <div className="container mx-auto px-4">
             <div className="text-center space-y-4 mb-16">
               <h2 className="text-3xl md:text-4xl font-headline font-extrabold text-emerald-700 dark:text-emerald-300">

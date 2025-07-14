@@ -1,7 +1,7 @@
 import { questData } from "@/data/quests";
 import Image from "next/image";
-import QuestClientPanels from "./QuestClientPanels";
 import { notFound } from "next/navigation";
+import dynamic from "next/dynamic";
 import {
   Card,
   CardContent,
@@ -30,6 +30,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 
 import * as React from 'react';
+
+const QuestClientPanels = dynamic(() => import("./QuestClientPanels"));
+
 export default function QuestDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = React.use(params);
   const quest = questData.find((q) => q.id === id);

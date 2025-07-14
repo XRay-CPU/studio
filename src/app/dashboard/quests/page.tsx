@@ -1,7 +1,10 @@
-import { QuestCard } from "@/components/dashboard/QuestCard";
-import { QuestRecommendation } from "@/components/dashboard/QuestRecommendation";
-import { questData } from "@/data/quests";
 import { Separator } from "@/components/ui/separator";
+import { questData } from "@/data/quests";
+import dynamic from 'next/dynamic';
+
+const QuestCard = dynamic(() => import('@/components/dashboard/QuestCard').then(mod => mod.QuestCard));
+const QuestRecommendation = dynamic(() => import('@/components/dashboard/QuestRecommendation').then(mod => mod.QuestRecommendation));
+
 
 export default function QuestsPage() {
   return (

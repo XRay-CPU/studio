@@ -2,8 +2,7 @@
 "use client";
 
 import * as React from "react";
-import { TokenSwap } from "@/components/dashboard/TokenSwap";
-import { QuestCard } from "@/components/dashboard/QuestCard";
+import dynamic from 'next/dynamic';
 import { questData } from "@/data/quests";
 import {
   Card,
@@ -19,6 +18,13 @@ import {
 } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+const TokenSwap = dynamic(() =>
+  import('@/components/dashboard/TokenSwap').then((mod) => mod.TokenSwap)
+);
+const QuestCard = dynamic(() =>
+  import('@/components/dashboard/QuestCard').then((mod) => mod.QuestCard)
+);
 
 export default function WalletPage() {
   const [isOpen, setIsOpen] = React.useState(false);
